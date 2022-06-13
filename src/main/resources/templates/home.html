@@ -5,17 +5,34 @@
 <head> 
     <title>Vehicle Insurance System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/styles.css" /> 
 </head>
 
 <body>
 
-	<h1>Vehicle Insurance Form</h1>
+    <div class="header">
+        <h1>Vehicle Insurance System</h1>
+        <p> The pinnacle of vehicle insurance </p>
+    </div>
 
-    <form action="#" th:action="@{/home}" th:object="${home}" method="post">
-    	<p>Id: <input type="text" th:field="*{id}" /></p>
-        <p>Message: <input type="text" th:field="*{content}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
+    <div class="row">
+        <div class="side">
+            <h2>The best in the vehicle insurance industry</h2>
+        </div>
+        <div class="main">
+            <h2>Insurance Form</h2>
+            <h5>Please enter your details:</h5>
+            <form action="#" th:action="@{/home}" th:object="${home}" method="post">
+                <p>Id: <input type="text" th:field="*{id}" /></p>
+                <p>Vehicle Name: <input type="text" th:field="*{content}" /></p>
+                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2>Vehicle Insurance आसान बना दिया (made easy)</h2>
+      </div>
 
 </body>
 

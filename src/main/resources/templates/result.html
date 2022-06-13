@@ -5,14 +5,32 @@
 <head> 
     <title>Vehicle Insurance System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
 </head>
 
 <body>
 
-	<h1>Submitted Details</h1>
-    <p th:text="'id: ' + ${home.id}" />
-    <p th:text="'content: ' + ${home.content}" />
-    <a href="/home">Submit another message</a>
+    <div class="header">
+        <h1>Vehicle Insurance System</h1>
+        <p> The pinnacle of vehicle insurance </p>
+    </div>
+
+    <div class="row">
+        <div class="side">
+            <h2>The best in the vehicle insurance industry</h2>
+        </div>
+        <div class="main">
+            <h2>Form Results</h2>
+            <h5>Here's what you submitted:</h5>
+            <p th:text="'id: ' + ${home.id}" />
+            <p th:text="'Vehicle Name: ' + ${home.content}" />
+            <a href="/home">Submit another message</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2>Vehicle Insurance आसान बना दिया (made easy)</h2>
+      </div>
 
 </body>
 
