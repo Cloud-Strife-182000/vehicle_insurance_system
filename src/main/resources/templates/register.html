@@ -17,8 +17,8 @@
 
     <div class="navbar">
         <a th:href="@{home}">Home</a>
-        <a a th:href="@{register}" class="active">Register</a>
-        <a href="#">Login</a>
+        <a th:href="@{register}" class="active">Register</a>
+        <a th:href="@{userlogin}">Login</a>
     </div>
 
     <div class="row">
@@ -26,11 +26,15 @@
             <h2>The best in the vehicle insurance industry</h2>
         </div>
         <div class="main">
-            <h2>Insurance Form</h2>
+            <h2>Insurance Registration</h2>
             <h5>Please enter your details:</h5>
             <form action="#" th:action="@{/register}" th:object="${register}" method="post">
                 <p>First Name: <input type="text" th:field="*{firstName}" /></p>
                 <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
+                <p>Address: <input type="text" th:field="*{address}" /></p>
+                <p>City: <input type="text" th:field="*{city}" /></p>
+                <p>Username: <input type="text" th:field="*{username}" /></p>
+                <p>Password: <input type="text" th:field="*{password}" /></p>
                 <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
             </form>
         </div>

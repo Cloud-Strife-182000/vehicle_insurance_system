@@ -16,9 +16,9 @@
     </div>
 
     <div class="navbar">
-        <a th:href="@{home}" class="active">Home</a>
+        <a th:href="@{home}">Home</a>
         <a th:href="@{register}">Register</a>
-        <a th:href="@{userlogin}">Login</a>
+        <a th:href="@{userlogin}" class="active">Login</a>
     </div>
 
     <div class="row">
@@ -26,8 +26,9 @@
             <h2>The best in the vehicle insurance industry</h2>
         </div>
         <div class="main">
-            <h2>World-class insurance policies</h2>
-            <p>All types of vehicles accepted</p>
+            <h2>User Not Found</h2>
+            <h5>Please try again.</h5>
+            <a th:href="@{userlogin}" class="active">Login</a>
         </div>
     </div>
 
