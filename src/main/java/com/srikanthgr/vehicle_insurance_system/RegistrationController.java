@@ -1,6 +1,6 @@
 package com.srikanthgr.vehicle_insurance_system;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -65,7 +65,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/userlogin")
-    public String loginFormSubmit(@ModelAttribute User user, Model model){
+    public String loginFormSubmit(@ModelAttribute User user, HttpSession session, Model model){
 
         model.addAttribute("userlogin", user);
 
@@ -74,6 +74,11 @@ public class RegistrationController {
         boolean successfulLogin = false;
 
         User userData = userRepo.findByUsername(enteredUsername);
+
+        CurrentUser currUser = new CurrentUser();
+        currUser.SetCurrentUser(userData);
+
+        session.setAttribute("curr_user", currUser);
 
         if(userData != null){
 
@@ -90,12 +95,41 @@ public class RegistrationController {
         return "login_failure";
     }
 
-    @GetMapping("/users")
-    public String listUsers(Model model) {
+    @GetMapping("/account")
+    public String accountPage(HttpSession session, Model model){
+
+        CurrentUser currUser = (CurrentUser) session.getAttribute("curr_user");
+
+        if(currUser != null){
+
+            if(currUser.getLoggedInValue() == true){
+
+                User cu = currUser.getCurrentUser();
+
+                model.addAttribute("account", cu);
+                return "account";
+            }
+        }
         
-        List<User> listUsers = userRepo.findAll();
-        model.addAttribute("listUsers", listUsers);
-     
-        return "users";
+        return "no_account";
+    }
+
+    @PostMapping("/account")
+    public String logOutOfAccount(HttpSession session, Model model){
+
+        CurrentUser currUser = (CurrentUser) session.getAttribute("curr_user");
+
+        if(currUser != null){
+
+            if(currUser.getLoggedInValue() == true){
+        
+                currUser = null;
+                session.setAttribute("curr_user", currUser);
+
+                model.addAttribute("account", null);
+            }
+        }
+
+        return "no_account";
     }
 }
