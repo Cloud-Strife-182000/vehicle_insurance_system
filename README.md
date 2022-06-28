@@ -4,3 +4,4 @@ Vehicle Insurance System - Web Application made with Java Spring Boot, Maven, Hi
 Two main functions so far: <br>
 -Register <br>
 -Login <br>
+-Account that stays logged in for the session duration <br>
