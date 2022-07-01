@@ -5,3 +5,5 @@ Functions implemented so far: <br>
 -Register <br>
 -Login <br>
 -Account that stays logged in for the session duration <br>
+-Register vehicles and show table <br>
+
