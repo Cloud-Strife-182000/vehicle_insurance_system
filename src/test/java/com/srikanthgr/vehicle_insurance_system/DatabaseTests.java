@@ -13,13 +13,16 @@ import org.junit.jupiter.api.Test;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
-public class UserRepositoryTests {
+public class DatabaseTests {
     
     @Autowired
     private TestEntityManager testEntityManager;
 
     @Autowired
     private UserRepository repo;
+
+    @Autowired
+    private VehicleRepository v_repo;
 
     @Test
     public void testCreateUser(){
@@ -38,5 +41,24 @@ public class UserRepositoryTests {
         User existUser = testEntityManager.find(User.class, savedUser.getID());
 
         assertThat(user.getUsername()).isEqualTo(existUser.getUsername());
+    }
+
+    @Test
+    public void testCreateVehicle(){
+
+        Vehicle v = new Vehicle();
+
+        v.setUsername("sri.gr81@gmail.com");
+        v.setVehicleNumber("A123");
+        v.setVehicleType("Scooter");
+        v.setVehicleModel("Honda Activa 2");
+        v.setRegisteredCity("Chennai");
+        v.setInsuranceStatus("Not Insured");
+
+        Vehicle savedVehicle = v_repo.save(v);
+
+        Vehicle existVehicle = testEntityManager.find(Vehicle.class, savedVehicle.getID());
+
+        assertThat(v.getUsername()).isEqualTo(existVehicle.getUsername());
     }
 }

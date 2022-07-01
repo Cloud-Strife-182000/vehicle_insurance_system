@@ -1,5 +1,7 @@
 package com.srikanthgr.vehicle_insurance_system;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +18,21 @@ public class RegistrationController {
     @Autowired
     private UserRepository userRepo;
 
+    @Autowired
+    private VehicleRepository vehicleRepo;
+
     @GetMapping("/home")
     public String homePage(){
-        return "home";
+        return "/home";
     }
 
     @GetMapping("/register")
     public String registrationForm(Model model){
-        
+
         model.addAttribute("register", new User());
         model.addAttribute("logger", new Logger());
 
-        return "register";
+        return "/register";
     }
 
     @PostMapping("/register")
@@ -49,19 +54,20 @@ public class RegistrationController {
 
             userRepo.save(user);
 
-            return "register_success";
+            return "/register_success";
         }
 
         logger.setErrorMessage("Username already taken.");
 
-        return "register_failure";
+        return "/register_failure";
     }
 
     @GetMapping("/userlogin")
     public String loginForm(Model model){
-        
+
         model.addAttribute("userlogin", new User());
-        return "userlogin";
+
+        return "/userlogin";
     }
 
     @PostMapping("/userlogin")
@@ -75,10 +81,7 @@ public class RegistrationController {
 
         User userData = userRepo.findByUsername(enteredUsername);
 
-        CurrentUser currUser = new CurrentUser();
-        currUser.SetCurrentUser(userData);
-
-        session.setAttribute("curr_user", currUser);
+        session.setAttribute("curr_user", userData);
 
         if(userData != null){
 
@@ -89,47 +92,87 @@ public class RegistrationController {
 
             successfulLogin = passwordEncoder.matches(enteredPassword, actualPassword);
 
-            if(successfulLogin) return "login_success";
+            if(successfulLogin) return "/login_success";
         }
 
-        return "login_failure";
+        return "/login_failure";
     }
 
     @GetMapping("/account")
     public String accountPage(HttpSession session, Model model){
 
-        CurrentUser currUser = (CurrentUser) session.getAttribute("curr_user");
+        User currUser = (User) session.getAttribute("curr_user");
 
         if(currUser != null){
 
-            if(currUser.getLoggedInValue() == true){
-
-                User cu = currUser.getCurrentUser();
-
-                model.addAttribute("account", cu);
-                return "account";
-            }
+            model.addAttribute("account", currUser);
+            return "/account";
         }
         
-        return "no_account";
+        return "/no_account";
     }
 
     @PostMapping("/account")
     public String logOutOfAccount(HttpSession session, Model model){
 
-        CurrentUser currUser = (CurrentUser) session.getAttribute("curr_user");
+        User currUser = (User) session.getAttribute("curr_user");
 
         if(currUser != null){
 
-            if(currUser.getLoggedInValue() == true){
-        
-                currUser = null;
-                session.setAttribute("curr_user", currUser);
+            currUser = null;
 
-                model.addAttribute("account", null);
-            }
+            session.setAttribute("curr_user", null);
+            model.addAttribute("account", null);
         }
 
-        return "no_account";
+        return "/no_account";
+    }
+
+    @GetMapping("/account/insurance")
+    public String insurancePage(HttpSession session, Model model){
+        
+        User currUser = (User) session.getAttribute("curr_user");
+
+        List<Vehicle> currVehicles = vehicleRepo.findByUsername(currUser.getUsername());
+
+        if(!currVehicles.isEmpty()){
+
+            model.addAttribute("vehicles", currVehicles);
+
+            return "/account/insurance";
+        }
+
+        return "/account/no_vehicle";
+    }
+
+    @GetMapping("/account/register_vehicle")
+    public String vehicleForm(HttpSession session, Model model){
+        
+        model.addAttribute("vehicle_details", new Vehicle());
+
+        return "/account/register_vehicle";
+    }
+
+    @PostMapping("/account/register_vehicle")
+    public String vehicleFormSubmit(@ModelAttribute Vehicle vehicle, HttpSession session, Model model){
+
+        User currUser = (User) session.getAttribute("curr_user");
+
+        vehicle.setUsername(currUser.getUsername());
+        vehicle.setInsuranceStatus("Not Insured");
+
+        model.addAttribute("vehicle_details", vehicle);
+
+        vehicleRepo.save(vehicle);
+
+        return "/account/register_policy";
+    }
+
+    @GetMapping("/account/register_policy")
+    public String policyForm(HttpSession session, Model model){
+        
+        model.addAttribute("policy_details", new Vehicle());
+
+        return "/account/register_policy";
     }
 }

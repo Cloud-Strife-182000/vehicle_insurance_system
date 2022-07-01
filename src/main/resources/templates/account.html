@@ -27,14 +27,20 @@
             <h2>The best in the vehicle insurance industry</h2>
         </div>
         <div class="main">
+
             <h2>Account</h2>
+
             <p th:text="'Welcome, ' + ${account.firstName} + ' ' + ${account.lastName}" />
             <p th:text="'Address: ' + ${account.address}" />
             <p th:text="'City: ' + ${account.city}" />
             <p th:text="'Your username: ' + ${account.username}" />
+
+            <a th:href="@{account/insurance}">Access your registered vehicles and insurance policies</a>
+
             <form action="#" th:action="@{/account}" method="post">
                 <p><input type="submit" value="Logout" /></p>
             </form>
+
         </div>
     </div>
 

@@ -1,8 +1,5 @@
 package com.srikanthgr.vehicle_insurance_system;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +8,7 @@ public class User {
  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long ID;
 
     @Column(nullable = false, unique = false, length = 255)

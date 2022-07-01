@@ -111,3 +111,28 @@
       width: 100%;
     }
   }
+
+  form { 
+    display: table;  
+    border-collapse: separate;
+    border-spacing: 0.5em 0.5em;    
+  }
+
+	.p_form { 
+    display: table-row;  
+  }
+
+	label { 
+    display: table-cell; 
+  }
+
+	input { 
+    display: table-cell; 
+  }
+
+  table, th, td {
+    border:1px solid black;
+    height:30px;
+    width:800px;
+  }
+  
