@@ -28,10 +28,143 @@
         </div>
         <div class="main">
             <h2>Insurance Details</h2>
-            <p>Please choose your vehicle insurance policy:</p>
+            <p>Please fill in the details regarding the insurance:</p>
+
+            <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
+
             <form th:action="@{register_policy}" th:object="${policy_details}" method="post">
+
+                <div class = "p_form">
+                    <label>Vehicle Number: </label>
+                    <input type="text" th:field="*{vehicleNumber}" />
+                </div>
+
+                <br>
+
+                <div class = "p_form">
+                    <label>Where is the vehicle parked at night? </label>
+                    <input type="radio" th:field="*{parkingLocation}" value="Locked enclosure" />
+                    Locked enclosure
+                    <br>
+                    <input type="radio" th:field="*{parkingLocation}" value="Not in locked enclosure but within the boundary wall" />
+                    Not in locked enclosure but within the boundary wall 
+                    <br>
+                    <input type="radio" th:field="*{parkingLocation}" value="Outside the boundary wall" />
+                    Outside the boundary wall
+                </div>
+
+                <br>
+
+                <div class = "p_form">
+                    <label>Choose the type of policy: </label>
+                    <input type="radio" th:field="*{insurancePolicy}" value="Liability Policy" />
+                    Liability Policy
+                    <br>
+                    <input type="radio" th:field="*{insurancePolicy}" value="Full OD+TP" />
+                    Full OD+TP
+                    <br>
+                    <input type="radio" th:field="*{insurancePolicy}" value="Theft+TP" />
+                    Theft+TP
+                    <br>
+                    <input type="radio" th:field="*{insurancePolicy}" value="Fire+TP" />
+                    Fire+TP
+                    <br>
+                    <input type="radio" th:field="*{insurancePolicy}" value="Fire+Theft+TP" />
+                    Fire+Theft+TP
+                </div>
+
+                <br>
+
+                <div class="p_form">
+                    <label>Are you entitled to No Claim Bonus? </label>
+                    <input type="radio" th:field="*{noClaimBonus}" value="Yes" />
+                    Yes
+                    <br>
+                    <input type="radio" th:field="*{noClaimBonus}" value="No" />
+                    No
+                </div>
+
+                <br>
+
+                <div class="p_form">
+                    <label>Is the vehicle fitted with Anti-Theft Device? </label>
+                    <input type="radio" th:field="*{antiTheftDevice}" value="Yes" />
+                    Yes
+                    <br>
+                    <input type="radio" th:field="*{antiTheftDevice}" value="No" />
+                    No
+                </div>
+
+                <br>
+
+                <div class="p_form">
+                    <label>Do you wish to include Personal Accident(PA) Cover for <br> Named Person? </label>
+                    <input type="radio" th:field="*{paCoverNamedPerson}" value="Yes" />
+                    Yes
+                    <br>
+                    <input type="radio" th:field="*{paCoverNamedPerson}" value="No" />
+                    No
+                </div>
+
+                <br>
+
+                <div class="p_form">
+                    <label>Do you wish to include PA Cover for <br> unnamed person/hirer/pillion passengers(for Two Wheeler)? </label>
+                    <input type="radio" th:field="*{paCoverPassengers}" value="Yes" />
+                    Yes
+                    <br>
+                    <input type="radio" th:field="*{paCoverPassengers}" value="No" />
+                    No
+                </div>
                 
-                <p>Page under construction...</p>
+                <br>
+
+                <div class="p_form">
+                    <label>Do you wish to give Legal Liability to </label>
+                    <input type="radio" th:field="*{legalLiability}" value="Driver" />
+                    Driver
+                    <br>
+                    <input type="radio" th:field="*{legalLiability}" value="Employees" />
+                    Employees
+                    <br>
+                    <input type="radio" th:field="*{legalLiability}" value="Both" />
+                    Both
+                </div>
+                
+                <br>
+
+                <div class="p_form">
+                    <label>Do you wish opt for higher deductible <br> over and above the compulsory deductible? </label>
+                    <input type="radio" th:field="*{higherDeductible}" value="Yes" />
+                    Yes
+                    <br>
+                    <input type="radio" th:field="*{higherDeductible}" value="No" />
+                    No
+                </div>
+
+                <br>
+
+                <div class="p_form">
+                    <label>If Yes, please specify the amount(in Rs.) </label>
+                    <input type="number" th:field="*{higherDeductibleValue}" th:value="*{higherDeductibleValue}"/>
+                </div>
+
+                <br>
+
+                <div class="p_form">
+                    <label>Are you a member of the Automobile Association of India? </label>
+                    <input type="radio" th:field="*{automobileAssociationMember}" value="Yes" />
+                    Yes
+                    <br>
+                    <input type="radio" th:field="*{automobileAssociationMember}" value="No" />
+                    No
+                </div>
+
+                <br>
+
+                <p>
+                    <input type="submit" value="Submit" />
+                </p>
 
             </form>
         </div>

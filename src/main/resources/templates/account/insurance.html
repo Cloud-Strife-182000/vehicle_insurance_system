@@ -47,9 +47,26 @@
                   <td th:text="${vehicle.registeredCity}"></td>
                   <td th:text="${vehicle.insuranceStatus}"></td>
                 </tr>
-              </table>
+            </table>
 
-            <br></br>
+            <br>
+
+            <h2>Policy Details</h2>
+            <b><p th:text="${logger.errorMessage}" /></b>
+            <div th:if="${policiesExists}">
+              <table>
+                <tr>
+                  <th>Vehicle Number</th>
+                  <th>Insurance Policy</th>
+                </tr>
+                <tr th:each="policy : ${policies}">
+                  <td th:text="${policy.vehicleNumber}"></td>
+                  <td th:text="${policy.insurancePolicy}"></td>
+                </tr>
+              </table>
+            </div>
+
+            <br>
 
             <a th:href="@{/account/register_vehicle}">Register another vehicle</a>
 

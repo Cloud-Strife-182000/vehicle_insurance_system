@@ -29,6 +29,9 @@
         <div class="main">
             <h2>User Login</h2>
             <h5>Please enter your username and password:</h5>
+
+            <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
+
             <form action="#" th:action="@{/userlogin}" th:object="${userlogin}" method="post">
             
                 <div class = "p_form">
@@ -36,12 +39,19 @@
                     <input type="text" th:field="*{username}" />
                 </div>
 
+                <br>
+
                 <div class = "p_form">
                     <label>Password: </label>
-                    <input type="text" th:field="*{password}" />
+                    <input type="password" th:field="*{password}" />
                 </div>
 
-                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                <br>
+
+                <p>
+                    <input type="submit" value="Submit" /> 
+                </p>
+                
             </form>
         </div>
     </div>

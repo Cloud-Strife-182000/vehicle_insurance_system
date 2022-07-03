@@ -135,4 +135,8 @@
     height:30px;
     width:800px;
   }
+
+  .errorMessage {
+    color:red;
+  }
   
