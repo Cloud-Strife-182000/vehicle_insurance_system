@@ -6,4 +6,5 @@ Functions implemented so far: <br>
 -Login <br>
 -Account that stays logged in for the session duration <br>
 -Register vehicles <br>
+-Register policies <br>
 
