@@ -2,9 +2,9 @@
 Vehicle Insurance System - Web Application made with Java Spring Boot, Maven, Hibernate and Oracle PL/SQL.
 
 Functions implemented so far: <br>
--Register <br>
--Login <br>
+-Register as new user<br>
+-Login as user <br>
 -Account that stays logged in for the session duration <br>
--Register vehicles <br>
--Register policies <br>
+-Register multiple vehicles per user <br>
+-Apply for one policy per vehicle <br>
 
