@@ -1,1 +1,1 @@
-docker run --name spring_boot_prometheus -p 9090:9090 -v /c/users/user/desktop/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+docker run --name spring_boot_prometheus -p 9090:9090 -v /c/users/user/desktop/srikanth_files/github_projects/vehicle_insurance_system/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
