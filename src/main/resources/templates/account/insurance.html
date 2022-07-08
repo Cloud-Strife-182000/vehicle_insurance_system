@@ -53,7 +53,7 @@
 
             <h2>Policy Details</h2>
             <b><p th:text="${logger.errorMessage}" /></b>
-            <div th:if="${policiesExists}">
+            <div th:if="${policiesExists == true}">
               <table>
                 <tr>
                   <th>Vehicle Number</th>
@@ -73,6 +73,10 @@
             <br></br>
 
             <a th:href="@{/account/register_policy}">Apply for an insurance policy</a>
+
+            <br></br>
+
+            <a th:href="@{/account}">Go back to the account page</a>
 
         </div>
     </div>
