@@ -28,23 +28,7 @@
         </div>
         <div class="main">
             <h2>Vehicle Removal</h2>
-            <p>Please specify the vehicle number of the vehicle to remove:</p>
-
-            <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
-
-            <form th:action="@{removal}" th:object="${vehicle_details}" method="post">
-                
-                <div class = "p_form">
-                    <label>Vehicle Number: </label>
-                    <input type="text" th:field="*{vehicleNumber}" />
-                </div>
-
-                <p>
-                    <input type="submit" value="Submit" /> 
-                    <input type="reset" value="Reset" />
-                </p>
-
-            </form>
+            <p>Removal successful.</p>
 
             <a th:href="@{/account/insurance}">Go back to view your insurance details</a>
 

@@ -314,17 +314,17 @@ public class RegistrationController {
     public String removalForm(Model model){
 
         model.addAttribute("vehicle_details", new Vehicle());
+        model.addAttribute("logger", new Logger());
 
         return "/account/removal";
     }
 
     @PostMapping("/account/removal")
-    public String removalForm(@ModelAttribute Vehicle v, HttpSession session, Model model){
+    public String removalForm(@ModelAttribute Vehicle v, @ModelAttribute Logger logger, HttpSession session, Model model){
 
         model.addAttribute("vehicle_details", v);
 
-        Logger logger = new Logger();
-
+        //check if vehicle number field is blank
         if(v.getVehicleNumber().isBlank()){
 
             logger.setErrorMessage("Error: Vehicle number not specified. Please enter your vehicle number.");
@@ -350,6 +350,7 @@ public class RegistrationController {
             }
         }
 
+        //check if vehicle is in database
         if(!vehicleRegistered){
 
             logger.setErrorMessage("Error: Vehicle not registered.");
@@ -359,8 +360,10 @@ public class RegistrationController {
             return "/account/register_policy";
         }
 
+        vehicleRepo.removeVehicle(currVehicle.getVehicleNumber());
+
         model.addAttribute("logger", logger);
 
-        return "/account/insurance";
+        return "/account/removal_success";
     }
 }

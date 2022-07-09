@@ -17,4 +17,9 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long>{
     @Transactional
     @Query("UPDATE Vehicle v SET v.insuranceStatus = ?2 WHERE v.vehicleNumber = ?1")
     public void updateInsuranceStatus(String vehicleNumber, String insuranceStatus);
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Vehicle v WHERE v.vehicleNumber = ?1")
+    public void removeVehicle(String vehiclenumber);
 }
