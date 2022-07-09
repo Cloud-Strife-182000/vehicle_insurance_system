@@ -38,7 +38,10 @@
                 
                 <div class = "p_form">
                     <label>Vehicle Type: </label>
-                    <input type="text" th:field="*{vehicleType}" />
+                    <select th:field="*{vehicleType}">
+                        <option value="Two Wheeler">Two Wheeler</option>
+                        <option value="Four Wheeler">Four Wheeler</option>
+                    </select>
                 </div>
 
                 <div class = "p_form">

@@ -171,32 +171,48 @@ public class RegistrationController {
         List<Vehicle> currVehicles = vehicleRepo.findByUsername(currUser.getUsername());
         List<Policy> currPolicies = new ArrayList<Policy>();
 
-        if(currVehicles.isEmpty()){
+        Logger logger_v = new Logger();
+        boolean vehiclesExists = true;
 
-            return "/account/no_vehicle";
-        }
-
-        for (Vehicle vehicle : currVehicles) {
-            
-            if(vehicle.getInsuranceStatus().equals("Applied")){
-
-                Policy p = policyRepo.findByVehicleNumber(vehicle.getVehicleNumber());
-                currPolicies.add(p);
-            }
-        }
-
-        Logger logger = new Logger();
+        Logger logger_p = new Logger();
         boolean policiesExists = true;
 
-        if(currPolicies.isEmpty()){
-            
+        //if no vehicles in database
+        if(currVehicles.isEmpty()){
+
+            vehiclesExists = false;
+            logger_v.setErrorMessage("You have not registered any vehicles.");
+
             policiesExists = false;
-            logger.setErrorMessage("You have not applied for any insurance policies yet.");
+            logger_p.setErrorMessage("You must first register a vehicle to apply for insurance.");
+        }
+
+        //if there are vehicles in database
+        if(vehiclesExists == true){
+
+            for (Vehicle vehicle : currVehicles) {
+            
+                if(vehicle.getInsuranceStatus().equals("Applied")){
+    
+                    Policy p = policyRepo.findByVehicleNumber(vehicle.getVehicleNumber());
+                    currPolicies.add(p);
+                }
+            }
+            
+            //if vehicles are there but no policies in database
+            if(currPolicies.isEmpty()){
+                
+                policiesExists = false;
+                logger_p.setErrorMessage("You have not applied any vehicle for insurance.");
+            }
+
         }
 
         model.addAttribute("vehicles", currVehicles);
         model.addAttribute("policies", currPolicies);
-        model.addAttribute("logger", logger);
+        model.addAttribute("logger_v", logger_v);
+        model.addAttribute("logger_p", logger_p);
+        model.addAttribute("vehiclesExists", vehiclesExists);
         model.addAttribute("policiesExists", policiesExists);
 
         return "/account/insurance";
@@ -292,5 +308,59 @@ public class RegistrationController {
         policyRepo.save(policy);
 
         return "/account/policy_success";
+    }
+
+    @GetMapping("/account/removal")
+    public String removalForm(Model model){
+
+        model.addAttribute("vehicle_details", new Vehicle());
+
+        return "/account/removal";
+    }
+
+    @PostMapping("/account/removal")
+    public String removalForm(@ModelAttribute Vehicle v, HttpSession session, Model model){
+
+        model.addAttribute("vehicle_details", v);
+
+        Logger logger = new Logger();
+
+        if(v.getVehicleNumber().isBlank()){
+
+            logger.setErrorMessage("Error: Vehicle number not specified. Please enter your vehicle number.");
+
+            model.addAttribute("logger", logger);
+
+            return "/account/removal";
+        }
+
+        User currUser = (User) session.getAttribute("curr_user");
+
+        List<Vehicle> currVehicles = vehicleRepo.findByUsername(currUser.getUsername());
+
+        boolean vehicleRegistered = false;
+        Vehicle currVehicle = new Vehicle();
+
+        for (Vehicle vehicle : currVehicles) {
+            
+            if(vehicle.getVehicleNumber().equals(v.getVehicleNumber())){
+
+                vehicleRegistered = true;
+                currVehicle = vehicle;
+            }
+        }
+
+        if(!vehicleRegistered){
+
+            logger.setErrorMessage("Error: Vehicle not registered.");
+            
+            model.addAttribute("logger", logger);
+
+            return "/account/register_policy";
+        }
+
+        model.addAttribute("logger", logger);
+
+        return "/account/insurance";
     }
 }

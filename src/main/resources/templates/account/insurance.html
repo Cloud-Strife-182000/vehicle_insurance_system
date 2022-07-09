@@ -29,10 +29,16 @@
         <div class="main">
 
             <h2>Insurance Details</h2>
-            <p>Please choose which one of your vehicles to apply for insurance:</p>
+            <p>You can find your vehicle details and insurance details below:</p>
+            
             <h2>Vehicle Details</h2>
 
-            <table>
+            <div th:if="${!vehiclesExists}">
+              <b><p th:text="${logger_v.errorMessage}" /></b>
+            </div>
+
+            <div th:if="${vehiclesExists}">
+              <table>
                 <tr>
                   <th>Vehicle Number</th>
                   <th>Vehicle Type</th>
@@ -47,13 +53,18 @@
                   <td th:text="${vehicle.registeredCity}"></td>
                   <td th:text="${vehicle.insuranceStatus}"></td>
                 </tr>
-            </table>
+              </table>
+            </div>
 
             <br>
 
             <h2>Policy Details</h2>
-            <b><p th:text="${logger.errorMessage}" /></b>
-            <div th:if="${policiesExists == true}">
+
+            <div th:if="${!policiesExists}">
+              <b><p th:text="${logger_p.errorMessage}" /></b>
+            </div>
+
+            <div th:if="${policiesExists}">
               <table>
                 <tr>
                   <th>Vehicle Number</th>
@@ -68,7 +79,11 @@
 
             <br>
 
-            <a th:href="@{/account/register_vehicle}">Register another vehicle</a>
+            <a th:href="@{/account/register_vehicle}">Register a vehicle</a>
+
+            <br></br>
+
+            <a th:href="@{/account/removal}">Remove vehicle and insurance policies associated with it</a>
 
             <br></br>
 

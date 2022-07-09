@@ -27,10 +27,24 @@
             <h2>The best in the vehicle insurance industry</h2>
         </div>
         <div class="main">
-            <h2>Insurance Details</h2>
-            <p>You have not registered a vehicle.</p>
-            <p>Before applying for insurance, you need to register a vehicle.</p>
-            <a th:href="@{register_vehicle}">Click here to begin the application process.</a>
+            <h2>Vehicle Removal</h2>
+            <p>Please specify the vehicle number of the vehicle to remove:</p>
+
+            <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
+
+            <form th:action="@{removal}" th:object="${vehicle_details}" method="post">
+                
+                <div class = "p_form">
+                    <label>Vehicle Number: </label>
+                    <input type="text" th:field="*{vehicleNumber}" />
+                </div>
+
+                <p>
+                    <input type="submit" value="Submit" /> 
+                    <input type="reset" value="Reset" />
+                </p>
+
+            </form>
         </div>
     </div>
 
