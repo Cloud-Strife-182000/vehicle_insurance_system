@@ -20,6 +20,9 @@
         <a th:href="@{register}">Register</a>
         <a th:href="@{userlogin}" class="active">Login</a>
         <a th:href="@{account}">Account</a>
+        <div th:if="${isAdmin}">
+            <a th:href="@{admin}">Admin</a>
+        </div>
     </div>
 
     <div class="row">

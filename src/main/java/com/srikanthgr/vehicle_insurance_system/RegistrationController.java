@@ -28,24 +28,17 @@ public class RegistrationController {
     @GetMapping("/home")
     public String homePage(Model model, HttpSession session){
 
-        Object isAdminObject = session.getAttribute("isAdmin");
-        boolean isAdmin = false;
-        
-        if(isAdminObject != null){
-
-            isAdmin = (boolean) session.getAttribute("isAdmin");
-        }
-
-        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/home";
     }
 
     @GetMapping("/register")
-    public String registrationForm(Model model){
+    public String registrationForm(Model model, HttpSession session){
 
         model.addAttribute("register", new User());
         model.addAttribute("logger", new Logger());
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/register";
     }
@@ -92,10 +85,11 @@ public class RegistrationController {
     }
 
     @GetMapping("/userlogin")
-    public String loginForm(Model model){
+    public String loginForm(Model model, HttpSession session){
 
         model.addAttribute("userlogin", new User());
         model.addAttribute("logger", new Logger());
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/userlogin";
     }
@@ -118,6 +112,7 @@ public class RegistrationController {
             logger.setErrorMessage("Error: User not found.");
 
             model.addAttribute("logger", logger);
+            model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
             return "/userlogin";
         }
@@ -139,6 +134,8 @@ public class RegistrationController {
                 session.setAttribute("isAdmin", false);
             }
 
+            model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
+
             return "/login_success";
         }
         else{
@@ -146,6 +143,7 @@ public class RegistrationController {
             logger.setErrorMessage("Error: Wrong password.");
 
             model.addAttribute("logger", logger);
+            model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
             return "/userlogin";
         }
@@ -155,6 +153,8 @@ public class RegistrationController {
     public String accountPage(HttpSession session, Model model){
 
         User currUser = (User) session.getAttribute("curr_user");
+
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         if(currUser != null){
 
@@ -179,6 +179,7 @@ public class RegistrationController {
         session.setAttribute("curr_user", null);
         session.setAttribute("isAdmin", false);
         model.addAttribute("account", null);
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/no_account";
     }
@@ -234,6 +235,7 @@ public class RegistrationController {
         model.addAttribute("logger_p", logger_p);
         model.addAttribute("vehiclesExists", vehiclesExists);
         model.addAttribute("policiesExists", policiesExists);
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/account/insurance";
     }
@@ -242,6 +244,7 @@ public class RegistrationController {
     public String vehicleForm(HttpSession session, Model model){
         
         model.addAttribute("vehicle_details", new Vehicle());
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/account/register_vehicle";
     }
@@ -266,6 +269,7 @@ public class RegistrationController {
         
         model.addAttribute("policy_details", new Policy());
         model.addAttribute("logger", new Logger());
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/account/register_policy";
     }
@@ -331,10 +335,11 @@ public class RegistrationController {
     }
 
     @GetMapping("/account/removal")
-    public String removalForm(Model model){
+    public String removalForm(Model model, HttpSession session){
 
         model.addAttribute("vehicle_details", new Vehicle());
         model.addAttribute("logger", new Logger());
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/account/removal";
     }
@@ -396,15 +401,7 @@ public class RegistrationController {
     @GetMapping("/admin")
     public String adminPage(Model model, HttpSession session){
 
-        Object isAdminObject = session.getAttribute("isAdmin");
-        boolean isAdmin = false;
-        
-        if(isAdminObject != null){
-
-            isAdmin = (boolean) session.getAttribute("isAdmin");
-        }
-
-        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "/admin";
     }
