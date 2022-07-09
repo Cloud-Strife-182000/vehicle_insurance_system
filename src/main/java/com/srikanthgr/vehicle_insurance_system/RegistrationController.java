@@ -362,6 +362,12 @@ public class RegistrationController {
 
         vehicleRepo.removeVehicle(currVehicle.getVehicleNumber());
 
+        //check if vehicle has policy in database
+        if(currVehicle.getInsuranceStatus().equals("Applied")){
+
+            policyRepo.removePolicy(currVehicle.getVehicleNumber());
+        }
+
         model.addAttribute("logger", logger);
 
         return "/account/removal_success";
