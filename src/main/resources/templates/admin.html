@@ -16,12 +16,12 @@
     </div>
 
     <div class="navbar">
-        <a th:href="@{home}" class="active">Home</a>
+        <a th:href="@{home}">Home</a>
         <a th:href="@{register}">Register</a>
         <a th:href="@{userlogin}">Login</a>
         <a th:href="@{account}">Account</a>
         <div th:if="${isAdmin}">
-            <a th:href="@{admin}">Admin</a>
+            <a th:href="@{admin}" class="active">Admin</a>
         </div>
     </div>
 
@@ -32,6 +32,7 @@
         <div class="main">
             <h2>World-class insurance policies</h2>
             <p>All types of vehicles accepted</p>
+            <p>Hello, Admin!</p>
         </div>
     </div>
 

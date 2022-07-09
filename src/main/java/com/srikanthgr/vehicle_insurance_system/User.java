@@ -32,6 +32,8 @@ public class User {
     @Column(nullable = false, unique = false, length = 255)
     private String confirmPassword;
 
+    @Column(nullable = false, unique = false, length = 255)
+    private String role;
 
     public Long getID() {
         return this.ID;
@@ -96,4 +98,12 @@ public class User {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }    
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }   
 }

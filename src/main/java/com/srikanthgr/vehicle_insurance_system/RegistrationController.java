@@ -26,7 +26,18 @@ public class RegistrationController {
     private PolicyRepository policyRepo;
 
     @GetMapping("/home")
-    public String homePage(){
+    public String homePage(Model model, HttpSession session){
+
+        Object isAdminObject = session.getAttribute("isAdmin");
+        boolean isAdmin = false;
+        
+        if(isAdminObject != null){
+
+            isAdmin = (boolean) session.getAttribute("isAdmin");
+        }
+
+        model.addAttribute("isAdmin", isAdmin);
+
         return "/home";
     }
 
@@ -120,6 +131,14 @@ public class RegistrationController {
 
         if(successfulLogin){
 
+            if(userData.getRole().equals("Admin")){
+
+                session.setAttribute("isAdmin", true);
+            }
+            else{
+                session.setAttribute("isAdmin", false);
+            }
+
             return "/login_success";
         }
         else{
@@ -158,6 +177,7 @@ public class RegistrationController {
         currUser = null;
 
         session.setAttribute("curr_user", null);
+        session.setAttribute("isAdmin", false);
         model.addAttribute("account", null);
 
         return "/no_account";
@@ -371,5 +391,21 @@ public class RegistrationController {
         model.addAttribute("logger", logger);
 
         return "/account/removal_success";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage(Model model, HttpSession session){
+
+        Object isAdminObject = session.getAttribute("isAdmin");
+        boolean isAdmin = false;
+        
+        if(isAdminObject != null){
+
+            isAdmin = (boolean) session.getAttribute("isAdmin");
+        }
+
+        model.addAttribute("isAdmin", isAdmin);
+
+        return "/admin";
     }
 }

@@ -20,13 +20,18 @@ public class DatabaseTests {
     private TestEntityManager testEntityManager;
 
     @Autowired
-    private UserRepository repo;
+    private UserRepository u_repo;
 
     @Autowired
     private VehicleRepository v_repo;
 
     @Autowired
     private PolicyRepository p_repo;
+
+    @Test
+    public void testFillRoles(){
+        u_repo.fillRoles();
+    }
 
     @Test
     public void testCreateUser(){
@@ -44,7 +49,7 @@ public class DatabaseTests {
         user.setPassword(encodedPassword);
         user.setConfirmPassword(encodedPassword);
 
-        User savedUser = repo.save(user);
+        User savedUser = u_repo.save(user);
 
         User existUser = testEntityManager.find(User.class, savedUser.getID());
 
