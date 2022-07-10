@@ -179,7 +179,7 @@ public class RegistrationController {
         session.setAttribute("curr_user", null);
         session.setAttribute("isAdmin", false);
         model.addAttribute("account", null);
-        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
+        model.addAttribute("isAdmin", false);
 
         return "/no_account";
     }
@@ -192,20 +192,19 @@ public class RegistrationController {
         List<Vehicle> currVehicles = vehicleRepo.findByUsername(currUser.getUsername());
         List<Policy> currPolicies = new ArrayList<Policy>();
 
-        Logger logger_v = new Logger();
+        Logger logger= new Logger();
+        
         boolean vehiclesExists = true;
-
-        Logger logger_p = new Logger();
         boolean policiesExists = true;
 
         //if no vehicles in database
         if(currVehicles.isEmpty()){
 
             vehiclesExists = false;
-            logger_v.setErrorMessage("You have not registered any vehicles.");
+            logger.setErrorMessage("You have not registered any vehicles.");
 
             policiesExists = false;
-            logger_p.setErrorMessage("You must first register a vehicle to apply for insurance.");
+            logger.setSecondaryErrorMessage("You must first register a vehicle to apply for insurance.");
         }
 
         //if there are vehicles in database
@@ -224,15 +223,14 @@ public class RegistrationController {
             if(currPolicies.isEmpty()){
                 
                 policiesExists = false;
-                logger_p.setErrorMessage("You have not applied any vehicle for insurance.");
+                logger.setSecondaryErrorMessage("You have not applied any vehicle for insurance.");
             }
 
         }
 
         model.addAttribute("vehicles", currVehicles);
         model.addAttribute("policies", currPolicies);
-        model.addAttribute("logger_v", logger_v);
-        model.addAttribute("logger_p", logger_p);
+        model.addAttribute("logger", logger);
         model.addAttribute("vehiclesExists", vehiclesExists);
         model.addAttribute("policiesExists", policiesExists);
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
@@ -402,6 +400,91 @@ public class RegistrationController {
     public String adminPage(Model model, HttpSession session){
 
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
+        model.addAttribute("user_entered", new User());
+
+        boolean vehiclesExists = false;
+        boolean policiesExists = false;
+        boolean userDetailsToggle = false;
+            
+        model.addAttribute("vehiclesExists", vehiclesExists);
+        model.addAttribute("policiesExists", policiesExists);
+        model.addAttribute("userDetailsToggle", userDetailsToggle);
+
+        model.addAttribute("logger", new Logger());
+
+        return "/admin";
+    }
+
+    @PostMapping("/admin")
+    public String adminFormSubmit(Model model, @ModelAttribute Logger logger, @ModelAttribute User user, HttpSession session){
+
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
+        model.addAttribute("user_entered", user);
+
+        boolean vehiclesExists = false;
+        boolean policiesExists = false;
+        boolean userDetailsToggle = false;
+
+        User userData = userRepo.findByUsername(user.getUsername());
+
+        if(userData == null){
+
+            vehiclesExists = false;
+            policiesExists = false;
+            userDetailsToggle = false;
+            
+            model.addAttribute("vehiclesExists", vehiclesExists);
+            model.addAttribute("policiesExists", policiesExists);
+            model.addAttribute("userDetailsToggle", userDetailsToggle);
+
+            logger.setErrorMessage("Error: No such user found");
+
+            model.addAttribute("logger", logger);
+
+            return "/admin";
+        }
+        else{
+            userDetailsToggle = true;
+        }
+
+        List<Vehicle> vehicles = vehicleRepo.findByUsername(user.getUsername());
+        List<Policy> policies = new ArrayList<Policy>();
+
+        for (Vehicle vehicle : vehicles) {
+         
+            if(vehicle.getInsuranceStatus().equals("Applied")){
+
+                policies.add(policyRepo.findByVehicleNumber(vehicle.getVehicleNumber()));
+            }
+        }
+
+        if(vehicles.isEmpty()){
+            logger.setSecondaryErrorMessage("This user has not registered any vehicles.");
+            vehiclesExists = false;
+        }
+        else{
+
+            model.addAttribute("vehicles", vehicles);
+
+            vehiclesExists = true;
+        }
+
+        if(policies.isEmpty()){
+            logger.setTertiaryErrorMessage("This user has not applied for any insurance policies.");
+            policiesExists = false;
+        }
+        else{
+
+            model.addAttribute("policies", policies);
+
+            policiesExists = true;
+        }
+
+        model.addAttribute("vehiclesExists", vehiclesExists);
+        model.addAttribute("policiesExists", policiesExists);
+        model.addAttribute("userDetailsToggle", userDetailsToggle);
+
+        model.addAttribute("logger", logger);
 
         return "/admin";
     }

@@ -30,9 +30,71 @@
             <h2>The best in the vehicle insurance industry</h2>
         </div>
         <div class="main">
-            <h2>World-class insurance policies</h2>
-            <p>All types of vehicles accepted</p>
-            <p>Hello, Admin!</p>
+            <h2>Admin Center</h2>
+            
+            <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
+
+            <form th:action="@{admin}" th:object="${user_entered}" method="post">
+
+                <div class = "p_form">
+                    <label>Find vehicles and policies by username: </label>
+                    <input type="text" th:field="*{username}" />
+                </div>
+
+                <p>
+                    <input type="submit" value="Submit" />
+                </p>
+      
+            </form>
+
+            <div th:if="${userDetailsToggle}">
+                
+                <h2>Vehicle Details</h2>
+
+                <div th:if="${!vehiclesExists}">
+                    <b><p th:text="${logger.secondaryErrorMessage}" /></b>
+                </div>
+      
+                <div th:if="${vehiclesExists}">
+                    <table>
+                      <tr>
+                        <th>Vehicle Number</th>
+                        <th>Vehicle Type</th>
+                        <th>Vehicle Model</th>
+                        <th>Registered City</th>
+                        <th>Insurance Status</th>
+                      </tr>
+                      <tr th:each="vehicle : ${vehicles}">
+                        <td th:text="${vehicle.vehicleNumber}"></td>
+                        <td th:text="${vehicle.vehicleType}"></td>
+                        <td th:text="${vehicle.vehicleModel}"></td>
+                        <td th:text="${vehicle.registeredCity}"></td>
+                        <td th:text="${vehicle.insuranceStatus}"></td>
+                      </tr>
+                    </table>
+                </div>
+
+                <h2>Policy Details</h2>
+
+                <div th:if="${!policiesExists}">
+                    <b><p th:text="${logger.tertiaryErrorMessage}" /></b>
+                </div>
+      
+                <div th:if="${policiesExists}">
+                    <table>
+                      <tr>
+                        <th>Vehicle Number</th>
+                        <th>Insurance Policy</th>
+                      </tr>
+                      <tr th:each="policy : ${policies}">
+                        <td th:text="${policy.vehicleNumber}"></td>
+                        <td th:text="${policy.insurancePolicy}"></td>
+                      </tr>
+                    </table>
+                </div>
+
+            </div>
+
         </div>
     </div>
 

@@ -37,7 +37,7 @@
             <h2>Vehicle Details</h2>
 
             <div th:if="${!vehiclesExists}">
-              <b><p th:text="${logger_v.errorMessage}" /></b>
+              <b><p th:text="${logger.errorMessage}" /></b>
             </div>
 
             <div th:if="${vehiclesExists}">
@@ -64,7 +64,7 @@
             <h2>Policy Details</h2>
 
             <div th:if="${!policiesExists}">
-              <b><p th:text="${logger_p.errorMessage}" /></b>
+              <b><p th:text="${logger.secondaryErrorMessage}" /></b>
             </div>
 
             <div th:if="${policiesExists}">
