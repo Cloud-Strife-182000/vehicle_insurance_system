@@ -27,6 +27,11 @@ public class RegistrationController {
     @Autowired
     private PolicyRepository policyRepo;
 
+    @GetMapping("/")
+    public String redirectToHomePage(){
+        return "forward:home";
+    }
+
     @GetMapping("/home")
     public String homePage(Model model, HttpSession session){
 
