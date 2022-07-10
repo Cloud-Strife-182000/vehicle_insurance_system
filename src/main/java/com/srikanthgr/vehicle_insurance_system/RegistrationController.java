@@ -32,7 +32,7 @@ public class RegistrationController {
 
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-        return "/home";
+        return "home";
     }
 
     @GetMapping("/register")
