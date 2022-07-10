@@ -86,6 +86,8 @@ public class RegistrationController {
         user.setPassword(encodedPassword);
         user.setConfirmPassword(encodedPassword);
 
+        user.setRole("User");
+
         userRepo.save(user);
 
         return "register_success";
