@@ -7,5 +7,5 @@ Functions implemented so far: <br>
 -Account that stays logged in for the session duration <br>
 -Register multiple vehicles per user <br>
 -Apply for one policy per vehicle <br>
--Remove a vehicle and its policy by inputting vehicle number
--Admin feature - search function to get details of user in tabular form 
+-Remove a vehicle and its policy by inputting vehicle number <br>
+-Admin feature - search function to get details of user in tabular form <br>
