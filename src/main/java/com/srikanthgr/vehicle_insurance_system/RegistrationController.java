@@ -47,7 +47,7 @@ public class RegistrationController {
         model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-        return "/register";
+        return "register";
     }
 
     @PostMapping("/register")
@@ -67,7 +67,7 @@ public class RegistrationController {
             model.addAttribute("register", user);
             model.addAttribute("logger", logger);
 
-            return "/register";
+            return "register";
         }
         
         if(!user.getPassword().equals(user.getConfirmPassword())){
@@ -77,7 +77,7 @@ public class RegistrationController {
             model.addAttribute("register", user);
             model.addAttribute("logger", logger);
 
-            return "/register";
+            return "register";
         }
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -88,7 +88,7 @@ public class RegistrationController {
 
         userRepo.save(user);
 
-        return "/register_success";
+        return "register_success";
     }
 
     @GetMapping("/userlogin")
@@ -98,7 +98,7 @@ public class RegistrationController {
         model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-        return "/userlogin";
+        return "userlogin";
     }
 
     @PostMapping("/userlogin")
@@ -121,7 +121,7 @@ public class RegistrationController {
             model.addAttribute("logger", logger);
             model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-            return "/userlogin";
+            return "userlogin";
         }
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -143,7 +143,7 @@ public class RegistrationController {
 
             model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-            return "/login_success";
+            return "login_success";
         }
         else{
 
@@ -152,7 +152,7 @@ public class RegistrationController {
             model.addAttribute("logger", logger);
             model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-            return "/userlogin";
+            return "userlogin";
         }
     }
 
@@ -166,10 +166,10 @@ public class RegistrationController {
         if(currUser != null){
 
             model.addAttribute("account", currUser);
-            return "/account";
+            return "account";
         }
         
-        return "/no_account";
+        return "no_account";
     }
 
     @PostMapping("/account")
@@ -178,7 +178,7 @@ public class RegistrationController {
         User currUser = (User) session.getAttribute("curr_user");
 
         if(currUser == null){
-            return "/no_account";
+            return "no_account";
         }
 
         currUser = null;
@@ -188,7 +188,7 @@ public class RegistrationController {
         model.addAttribute("account", null);
         model.addAttribute("isAdmin", false);
 
-        return "/no_account";
+        return "no_account";
     }
 
     @GetMapping("/account/insurance")
@@ -242,7 +242,7 @@ public class RegistrationController {
         model.addAttribute("policiesExists", policiesExists);
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-        return "/account/insurance";
+        return "account/insurance";
     }
 
     @GetMapping("/account/register_vehicle")
@@ -251,7 +251,7 @@ public class RegistrationController {
         model.addAttribute("vehicle_details", new Vehicle());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-        return "/account/register_vehicle";
+        return "account/register_vehicle";
     }
 
     @PostMapping("/account/register_vehicle")
@@ -266,7 +266,7 @@ public class RegistrationController {
 
         vehicleRepo.save(vehicle);
 
-        return "/account/vehicle_success";
+        return "account/vehicle_success";
     }
 
     @GetMapping("/account/register_policy")
@@ -276,7 +276,7 @@ public class RegistrationController {
         model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-        return "/account/register_policy";
+        return "account/register_policy";
     }
 
     @PostMapping("/account/register_policy")
@@ -295,7 +295,7 @@ public class RegistrationController {
             model.addAttribute("policy_details", policy);
             model.addAttribute("logger", logger);
 
-            return "/account/register_policy";
+            return "account/register_policy";
         }
 
         List<Vehicle> currVehicles = vehicleRepo.findByUsername(currUser.getUsername());
@@ -319,7 +319,7 @@ public class RegistrationController {
             model.addAttribute("policy_details", policy);
             model.addAttribute("logger", logger);
 
-            return "/account/register_policy";
+            return "account/register_policy";
         }
 
         if(currVehicle.getInsuranceStatus().equals("Applied")){
@@ -329,14 +329,14 @@ public class RegistrationController {
             model.addAttribute("policy_details", policy);
             model.addAttribute("logger", logger);
 
-            return "/account/register_policy";
+            return "account/register_policy";
         }
 
         vehicleRepo.updateInsuranceStatus(currVehicle.getVehicleNumber(), "Applied");
 
         policyRepo.save(policy);
 
-        return "/account/policy_success";
+        return "account/policy_success";
     }
 
     @GetMapping("/account/removal")
@@ -346,7 +346,7 @@ public class RegistrationController {
         model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-        return "/account/removal";
+        return "account/removal";
     }
 
     @PostMapping("/account/removal")
@@ -361,7 +361,7 @@ public class RegistrationController {
 
             model.addAttribute("logger", logger);
 
-            return "/account/removal";
+            return "account/removal";
         }
 
         User currUser = (User) session.getAttribute("curr_user");
@@ -387,7 +387,7 @@ public class RegistrationController {
             
             model.addAttribute("logger", logger);
 
-            return "/account/register_policy";
+            return "account/register_policy";
         }
 
         vehicleRepo.removeVehicle(currVehicle.getVehicleNumber());
@@ -400,7 +400,7 @@ public class RegistrationController {
 
         model.addAttribute("logger", logger);
 
-        return "/account/removal_success";
+        return "account/removal_success";
     }
 
     @GetMapping("/admin")
@@ -415,7 +415,7 @@ public class RegistrationController {
 
         model.addAttribute("logger", new Logger());
 
-        return "/admin";
+        return "admin";
     }
 
     @PostMapping("/admin")
@@ -440,7 +440,7 @@ public class RegistrationController {
 
             model.addAttribute("logger", logger);
 
-            return "/admin";
+            return "admin";
         }
         else{
             
@@ -488,6 +488,6 @@ public class RegistrationController {
 
         model.addAttribute("logger", logger);
 
-        return "/admin";
+        return "admin";
     }
 }
