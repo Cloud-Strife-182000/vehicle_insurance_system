@@ -9,3 +9,7 @@ Functions implemented so far: <br>
 -Apply for one policy per vehicle <br>
 -Remove a vehicle and its policy by inputting vehicle number <br>
 -Admin feature - search function to get details of user in tabular form <br>
+
+Metrics: <br>
+-Prometheus config file to run prom/prometheus from docker <br>
+-View graphs of metrics at localhost:9090 port (as specified in prometheus config file) <br>
