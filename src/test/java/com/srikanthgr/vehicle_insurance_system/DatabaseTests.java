@@ -29,11 +29,6 @@ public class DatabaseTests {
     private PolicyRepository p_repo;
 
     @Test
-    public void testFillRoles(){
-        u_repo.fillRoles();
-    }
-
-    @Test
     public void testCreateUser(){
 
         User user = new User();
@@ -48,6 +43,7 @@ public class DatabaseTests {
         user.setUsername("sri.gr81@gmail.com");
         user.setPassword(encodedPassword);
         user.setConfirmPassword(encodedPassword);
+        user.setRole("Admin");
 
         User savedUser = u_repo.save(user);
 
@@ -98,5 +94,10 @@ public class DatabaseTests {
         Policy existPolicy = testEntityManager.find(Policy.class, savedPolicy.getID());
 
         assertThat(p.getUsername()).isEqualTo(existPolicy.getUsername());
+    }
+
+    @Test
+    public void testFillRoles(){
+        u_repo.fillRoles();
     }
 }
