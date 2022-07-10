@@ -37,7 +37,7 @@
             <form th:action="@{admin}" th:object="${user_entered}" method="post">
 
                 <div class = "p_form">
-                    <label>Find vehicles and policies by username: </label>
+                    <label>Search for user details by username: </label>
                     <input type="text" th:field="*{username}" />
                 </div>
 
@@ -49,6 +49,15 @@
 
             <div th:if="${userDetailsToggle}">
                 
+                <h2>User Details</h2>
+
+                <p th:text="'Name: ' + ${userData.firstName} + ' ' + ${userData.lastName}" />
+                <p th:text="'Address: ' + ${userData.address}" />
+                <p th:text="'City: ' + ${userData.city}" />
+                <p th:text="'Your username: ' + ${userData.username}" />
+
+                <br>
+
                 <h2>Vehicle Details</h2>
 
                 <div th:if="${!vehiclesExists}">
@@ -73,6 +82,8 @@
                       </tr>
                     </table>
                 </div>
+                
+                <br><br>
 
                 <h2>Policy Details</h2>
 

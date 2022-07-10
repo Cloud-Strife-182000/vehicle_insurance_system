@@ -402,12 +402,8 @@ public class RegistrationController {
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
         model.addAttribute("user_entered", new User());
 
-        boolean vehiclesExists = false;
-        boolean policiesExists = false;
         boolean userDetailsToggle = false;
             
-        model.addAttribute("vehiclesExists", vehiclesExists);
-        model.addAttribute("policiesExists", policiesExists);
         model.addAttribute("userDetailsToggle", userDetailsToggle);
 
         model.addAttribute("logger", new Logger());
@@ -429,12 +425,8 @@ public class RegistrationController {
 
         if(userData == null){
 
-            vehiclesExists = false;
-            policiesExists = false;
             userDetailsToggle = false;
             
-            model.addAttribute("vehiclesExists", vehiclesExists);
-            model.addAttribute("policiesExists", policiesExists);
             model.addAttribute("userDetailsToggle", userDetailsToggle);
 
             logger.setErrorMessage("Error: No such user found");
@@ -444,7 +436,10 @@ public class RegistrationController {
             return "/admin";
         }
         else{
+            
             userDetailsToggle = true;
+
+            model.addAttribute("userData", userData);
         }
 
         List<Vehicle> vehicles = vehicleRepo.findByUsername(user.getUsername());
