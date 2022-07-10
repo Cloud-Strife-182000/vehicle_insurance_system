@@ -27,7 +27,7 @@ public class RegistrationController {
     @Autowired
     private PolicyRepository policyRepo;
 
-    @GetMapping("home")
+    @GetMapping("/home")
     public String homePage(Model model, HttpSession session){
 
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
