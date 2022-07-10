@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.apache.commons.lang3.StringUtils;
+
 @Controller
 public class RegistrationController {
 
@@ -281,7 +283,7 @@ public class RegistrationController {
 
         model.addAttribute("policy_details", policy);
 
-        if(policy.getVehicleNumber().isBlank()){
+        if(StringUtils.isBlank(policy.getVehicleNumber())){
 
             logger.setErrorMessage("Error: Vehicle number not specified. Please enter your vehicle number.");
             
@@ -348,8 +350,8 @@ public class RegistrationController {
         model.addAttribute("vehicle_details", v);
 
         //check if vehicle number field is blank
-        if(v.getVehicleNumber().isBlank()){
-
+        if(StringUtils.isBlank(v.getVehicleNumber())){
+            
             logger.setErrorMessage("Error: Vehicle number not specified. Please enter your vehicle number.");
 
             model.addAttribute("logger", logger);
