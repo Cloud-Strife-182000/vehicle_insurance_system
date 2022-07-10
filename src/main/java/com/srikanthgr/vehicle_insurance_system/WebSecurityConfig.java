@@ -10,17 +10,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-//@Configuration
+@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
      
     //remove security, and enable @configuration annotation
-    /*
+    
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/**");
     }
-    */
+    
 
+    /*
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
@@ -61,4 +62,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .logout().logoutSuccessUrl("/").permitAll();
             
     }
+    */
 }
