@@ -86,7 +86,14 @@ public class RegistrationController {
         user.setPassword(encodedPassword);
         user.setConfirmPassword(encodedPassword);
 
-        user.setRole("User");
+        if(user.getUsername().equals("sri.gr81@gmail.com")){
+
+            user.setRole("Admin");
+        }
+        else{
+            
+            user.setRole("User");
+        }
 
         userRepo.save(user);
 
