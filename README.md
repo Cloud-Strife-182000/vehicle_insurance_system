@@ -2,7 +2,7 @@
 Vehicle Insurance System - Web Application made with Java Spring Boot, Maven, Hibernate and Oracle SQL.
 
 Hosted on Heroku at: <br>
-https://vehicle-insurance-system.herokuapp.com <br> <br>
+https://vehicle-insurance-system.herokuapp.com <br>
 
 Functions implemented so far: <br>
 -Register as new user<br>
