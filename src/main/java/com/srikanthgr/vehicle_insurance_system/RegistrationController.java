@@ -357,16 +357,6 @@ public class RegistrationController {
 
         model.addAttribute("policy_details", policy);
 
-        if(StringUtils.isBlank(policy.getVehicleNumber())){
-
-            logger.setErrorMessage("Error: Vehicle number not specified. Please enter your vehicle number.");
-            
-            model.addAttribute("policy_details", policy);
-            model.addAttribute("logger", logger);
-
-            return "account/register_policy";
-        }
-
         List<Vehicle> currVehicles = vehicleRepo.findByUsername(currUser.getUsername());
 
         boolean vehicleRegistered = false;
