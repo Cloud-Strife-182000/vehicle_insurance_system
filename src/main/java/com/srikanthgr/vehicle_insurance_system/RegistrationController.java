@@ -63,6 +63,7 @@ public class RegistrationController {
         if(StringUtils.isBlank(user.getFirstName()) || 
             StringUtils.isBlank(user.getLastName())  ||
             StringUtils.isBlank(user.getAddress()) ||
+            StringUtils.isBlank(user.getCity()) ||
             StringUtils.isBlank(user.getUsername()) ||
             StringUtils.isBlank(user.getPassword())){
 

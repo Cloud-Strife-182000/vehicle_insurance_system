@@ -38,49 +38,49 @@
             <form action="#" th:action="@{/register}" th:object="${register}" method="post">
 
                 <div class = "p_form">
-                    <label>First Name: </label>
+                    <label class="required">First Name: </label>
                     <input type="text" th:field="*{firstName}" />
                 </div>
                 
                 <br>
 
                 <div class = "p_form">
-                    <label>Last Name: </label>
+                    <label class="required">Last Name: </label>
                     <input type="text" th:field="*{lastName}" />
                 </div>
 
                 <br>
 
                 <div class = "p_form">
-                    <label>Address: </label>
+                    <label class="required">Address: </label>
                     <input type="text" th:field="*{address}" />
                 </div>
 
                 <br>
 
                 <div class = "p_form">
-                    <label>City: </label>
+                    <label class="required">City: </label>
                     <input type="text" th:field="*{city}" />
                 </div>
 
                 <br>
 
                 <div class = "p_form">
-                    <label>Username: </label>
+                    <label class="required">Username: </label>
                     <input type="text" th:field="*{username}" />
                 </div>
 
                 <br>
 
                 <div class = "p_form">
-                    <label>Password: </label>
+                    <label class="required">Password: </label>
                     <input type="password" th:field="*{password}" />
                 </div>
 
                 <br>
 
                 <div class = "p_form">
-                    <label>Confirm Password: </label>
+                    <label class="required">Confirm Password: </label>
                     <input type="password" th:field="*{confirmPassword}" />
                 </div>
 
