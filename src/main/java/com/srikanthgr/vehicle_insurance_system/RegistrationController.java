@@ -60,6 +60,20 @@ public class RegistrationController {
 
         User userData = userRepo.findByUsername(enteredUsername);
 
+        if(StringUtils.isBlank(user.getFirstName()) || 
+            StringUtils.isBlank(user.getLastName())  ||
+            StringUtils.isBlank(user.getAddress()) ||
+            StringUtils.isBlank(user.getUsername()) ||
+            StringUtils.isBlank(user.getPassword())){
+
+            logger.setErrorMessage("Error: All compulsory fields have not been filled");
+            
+            model.addAttribute("register", user);
+            model.addAttribute("logger", logger);
+
+            return "register";
+        }
+
         if(userData != null){
 
             logger.setErrorMessage("Error: Username already taken.");
