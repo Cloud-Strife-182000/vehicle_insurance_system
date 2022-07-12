@@ -480,12 +480,25 @@ public class RegistrationController {
     @PostMapping("/admin")
     public String adminFormSubmit(Model model, @ModelAttribute Logger logger, @ModelAttribute User user, HttpSession session){
 
-        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
-        model.addAttribute("user_entered", user);
-
         boolean vehiclesExists = false;
         boolean policiesExists = false;
         boolean userDetailsToggle = false;
+
+        if(StringUtils.isBlank(user.getUsername())){
+
+            userDetailsToggle = false;
+            
+            model.addAttribute("userDetailsToggle", userDetailsToggle);
+
+            logger.setErrorMessage("Error: All compulsory fields have not been filled");
+
+            model.addAttribute("logger", logger);
+
+            return "admin";
+        }
+
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
+        model.addAttribute("user_entered", user);
 
         User userData = userRepo.findByUsername(user.getUsername());
 
