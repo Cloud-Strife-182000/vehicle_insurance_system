@@ -32,9 +32,10 @@
         <div class="main">
             <h2>Insurance Details</h2>
             <p>Please fill out the following form to register your vehicle:</p>
-            <form th:action="@{register_vehicle}" th:object="${vehicle_details}" method="post">
 
-                <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
+            <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
+
+            <form th:action="@{register_vehicle}" th:object="${vehicle_details}" method="post">
                 
                 <div class = "p_form">
                     <label class="required">Vehicle Number: </label>
