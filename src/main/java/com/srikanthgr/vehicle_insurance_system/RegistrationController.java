@@ -306,6 +306,8 @@ public class RegistrationController {
             model.addAttribute("vehicle_details", vehicle);
             model.addAttribute("logger", logger);
             model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
+
+            return "account/register_vehicle";
         }
 
         vehicle.setUsername(currUser.getUsername());
