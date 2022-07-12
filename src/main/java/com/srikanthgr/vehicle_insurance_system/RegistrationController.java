@@ -285,15 +285,28 @@ public class RegistrationController {
     public String vehicleForm(HttpSession session, Model model){
         
         model.addAttribute("vehicle_details", new Vehicle());
+        model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
         return "account/register_vehicle";
     }
 
     @PostMapping("/account/register_vehicle")
-    public String vehicleFormSubmit(@ModelAttribute Vehicle vehicle, HttpSession session, Model model){
+    public String vehicleFormSubmit(@ModelAttribute Vehicle vehicle, @ModelAttribute Logger logger, HttpSession session, Model model){
 
         User currUser = (User) session.getAttribute("curr_user");
+
+        if(StringUtils.isBlank(vehicle.getVehicleNumber()) ||
+            StringUtils.isBlank(vehicle.getVehicleType()) ||
+            StringUtils.isBlank(vehicle.getVehicleModel()) ||
+            StringUtils.isBlank(vehicle.getRegisteredCity())){
+
+            logger.setErrorMessage("Error: All compulsory fields have not been filled");
+
+            model.addAttribute("vehicle_details", vehicle);
+            model.addAttribute("logger", logger);
+            model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
+        }
 
         vehicle.setUsername(currUser.getUsername());
         vehicle.setInsuranceStatus("Not Insured");

@@ -33,14 +33,16 @@
             <h2>Insurance Details</h2>
             <p>Please fill out the following form to register your vehicle:</p>
             <form th:action="@{register_vehicle}" th:object="${vehicle_details}" method="post">
+
+                <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
                 
                 <div class = "p_form">
-                    <label>Vehicle Number: </label>
+                    <label class="required">Vehicle Number: </label>
                     <input type="text" th:field="*{vehicleNumber}" />
                 </div>
                 
                 <div class = "p_form">
-                    <label>Vehicle Type: </label>
+                    <label class="required">Vehicle Type: </label>
                     <select th:field="*{vehicleType}">
                         <option value="Two Wheeler">Two Wheeler</option>
                         <option value="Four Wheeler">Four Wheeler</option>
@@ -48,12 +50,12 @@
                 </div>
 
                 <div class = "p_form">
-                    <label>Vehicle Model: </label>
+                    <label class="required">Vehicle Model: </label>
                     <input type="text" th:field="*{vehicleModel}" />
                 </div>
 
                 <div class = "p_form">
-                    <label>Registered City: </label>
+                    <label class="required">Registered City: </label>
                     <input type="text" th:field="*{registeredCity}" />
                 </div>
 
