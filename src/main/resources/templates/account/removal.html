@@ -38,7 +38,7 @@
             <form th:action="@{removal}" th:object="${vehicle_details}" method="post">
                 
                 <div class = "p_form">
-                    <label>Vehicle Number: </label>
+                    <label class="required">Vehicle Number: </label>
                     <input type="text" th:field="*{vehicleNumber}" />
                 </div>
 
