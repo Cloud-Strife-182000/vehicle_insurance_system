@@ -139,4 +139,9 @@
   .errorMessage {
     color:red;
   }
+
+  .required:after {
+    content:" *";
+    color: red;
+  }
   
