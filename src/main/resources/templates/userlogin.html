@@ -38,14 +38,14 @@
             <form action="#" th:action="@{/userlogin}" th:object="${userlogin}" method="post">
             
                 <div class = "p_form">
-                    <label>Username: </label>
+                    <label class="required">Username: </label>
                     <input type="text" th:field="*{username}" />
                 </div>
 
                 <br>
 
                 <div class = "p_form">
-                    <label>Password: </label>
+                    <label class="required">Password: </label>
                     <input type="password" th:field="*{password}" />
                 </div>
 

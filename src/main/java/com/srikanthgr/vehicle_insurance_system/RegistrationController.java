@@ -128,6 +128,17 @@ public class RegistrationController {
     @PostMapping("/userlogin")
     public String loginFormSubmit(@ModelAttribute User user, @ModelAttribute Logger logger, HttpSession session, Model model){
 
+        if(StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())){
+
+            logger.setErrorMessage("Error: All compulsory fields have not been filled");
+
+            model.addAttribute("userlogin", user);
+            model.addAttribute("logger", logger);
+            model.addAttribute("isAdmin", "false");
+
+            return "userlogin";
+        }
+
         String enteredUsername = user.getUsername();
 
         boolean successfulLogin = false;
@@ -142,6 +153,7 @@ public class RegistrationController {
 
             logger.setErrorMessage("Error: User not found.");
 
+            model.addAttribute("userlogin", user);
             model.addAttribute("logger", logger);
             model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
