@@ -20,7 +20,7 @@ public class Policy {
     @Column(nullable = false, unique = false)
     private String parkingLocation;
 
-    @Column(nullable = true, unique = false)
+    @Column(nullable = false, unique = false)
     private String insurancePolicy;
 
     @Column(nullable = false, unique = false)

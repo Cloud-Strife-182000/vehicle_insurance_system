@@ -333,6 +333,24 @@ public class RegistrationController {
     @PostMapping("/account/register_policy")
     public String policyFormSubmit(@ModelAttribute Policy policy, @ModelAttribute Logger logger, HttpSession session, Model model){
 
+        if(StringUtils.isBlank(policy.getVehicleNumber()) ||
+        StringUtils.isBlank(policy.getParkingLocation()) ||
+        StringUtils.isBlank(policy.getInsurancePolicy()) ||
+        StringUtils.isBlank(policy.getNoClaimBonus()) || 
+        StringUtils.isBlank(policy.getAntiTheftDevice()) ||
+        StringUtils.isBlank(policy.getPaCoverNamedPerson()) ||
+        StringUtils.isBlank(policy.getPaCoverPassengers()) ||
+        StringUtils.isBlank(policy.getLegalLiability()) ||
+        StringUtils.isBlank(policy.getAutomobileAssociationMember())){
+
+            logger.setErrorMessage("Error: All compulsory fields have not been filled");
+
+            model.addAttribute("policy_details", policy);
+            model.addAttribute("logger", logger);
+
+            return "account/register_policy";
+        }
+
         User currUser = (User) session.getAttribute("curr_user");
 
         policy.setUsername(currUser.getUsername());

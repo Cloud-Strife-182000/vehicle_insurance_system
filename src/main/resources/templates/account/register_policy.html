@@ -38,14 +38,14 @@
             <form th:action="@{register_policy}" th:object="${policy_details}" method="post">
 
                 <div class = "p_form">
-                    <label>Vehicle Number: </label>
+                    <label class="required">Vehicle Number: </label>
                     <input type="text" th:field="*{vehicleNumber}" />
                 </div>
 
                 <br>
 
                 <div class = "p_form">
-                    <label>Where is the vehicle parked at night? </label>
+                    <label class="required">Where is the vehicle parked at night? </label>
                     <input type="radio" th:field="*{parkingLocation}" value="Locked enclosure" />
                     Locked enclosure
                     <br>
@@ -59,7 +59,7 @@
                 <br>
 
                 <div class = "p_form">
-                    <label>Choose the type of policy: </label>
+                    <label class="required">Choose the type of policy: </label>
                     <input type="radio" th:field="*{insurancePolicy}" value="Liability Policy" />
                     Liability Policy
                     <br>
@@ -79,7 +79,7 @@
                 <br>
 
                 <div class="p_form">
-                    <label>Are you entitled to No Claim Bonus? </label>
+                    <label class="required">Are you entitled to No Claim Bonus? </label>
                     <input type="radio" th:field="*{noClaimBonus}" value="Yes" />
                     Yes
                     <br>
@@ -90,7 +90,7 @@
                 <br>
 
                 <div class="p_form">
-                    <label>Is the vehicle fitted with Anti-Theft Device? </label>
+                    <label class="required">Is the vehicle fitted with Anti-Theft Device? </label>
                     <input type="radio" th:field="*{antiTheftDevice}" value="Yes" />
                     Yes
                     <br>
@@ -101,7 +101,7 @@
                 <br>
 
                 <div class="p_form">
-                    <label>Do you wish to include Personal Accident(PA) Cover for <br> Named Person? </label>
+                    <label class="required">Do you wish to include Personal Accident(PA) Cover for <br> Named Person? </label>
                     <input type="radio" th:field="*{paCoverNamedPerson}" value="Yes" />
                     Yes
                     <br>
@@ -112,7 +112,7 @@
                 <br>
 
                 <div class="p_form">
-                    <label>Do you wish to include PA Cover for <br> unnamed person/hirer/pillion passengers(for Two Wheeler)? </label>
+                    <label class="required">Do you wish to include PA Cover for <br> unnamed person/hirer/pillion passengers(for Two Wheeler)? </label>
                     <input type="radio" th:field="*{paCoverPassengers}" value="Yes" />
                     Yes
                     <br>
@@ -123,7 +123,7 @@
                 <br>
 
                 <div class="p_form">
-                    <label>Do you wish to give Legal Liability to </label>
+                    <label class="required">Do you wish to give Legal Liability to </label>
                     <input type="radio" th:field="*{legalLiability}" value="Driver" />
                     Driver
                     <br>
@@ -155,7 +155,7 @@
                 <br>
 
                 <div class="p_form">
-                    <label>Are you a member of the Automobile Association of India? </label>
+                    <label class="required">Are you a member of the Automobile Association of India? </label>
                     <input type="radio" th:field="*{automobileAssociationMember}" value="Yes" />
                     Yes
                     <br>
