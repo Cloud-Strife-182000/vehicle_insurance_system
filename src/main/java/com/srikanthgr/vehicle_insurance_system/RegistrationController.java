@@ -484,6 +484,9 @@ public class RegistrationController {
         boolean policiesExists = false;
         boolean userDetailsToggle = false;
 
+        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
+        model.addAttribute("user_entered", user);
+
         if(StringUtils.isBlank(user.getUsername())){
 
             userDetailsToggle = false;
@@ -496,9 +499,6 @@ public class RegistrationController {
 
             return "admin";
         }
-
-        model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
-        model.addAttribute("user_entered", user);
 
         User userData = userRepo.findByUsername(user.getUsername());
 
