@@ -584,4 +584,10 @@ public class RegistrationController {
 
         return "admin";
     }
+
+    @GetMapping("/contact")
+    public String contactPage(Model model){
+
+        return "contact";
+    }
 }
