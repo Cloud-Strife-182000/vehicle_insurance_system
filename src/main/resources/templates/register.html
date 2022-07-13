@@ -44,7 +44,7 @@
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
                                 </svg> Register</legend>
                         </fieldset>
-                        <p th:text="${logger.errorMessage}" />
+                        <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="from_name">First Name</label><input class="form-control" type="text" id="from_name" tabindex="-1" name="from_name" required="" placeholder="First Name" th:field="*{firstName}"></div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="from_name">Last Name</label><input class="form-control" type="text" id="from_name-1" tabindex="-1" name="from_name" required="" placeholder="Last Name" th:field="*{lastName}"></div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="from_email">Address</label><input class="form-control" type="text" id="from_email" name="from_email" required="" placeholder="Address" th:field="*{address}"></div>

@@ -37,8 +37,8 @@
                     <p class="w-lg-50">Log in to access your registered vehicles and policies</p>
                 </div>
             </div>
-            <p th:text="${logger.errorMessage}" />
             <div class="row d-flex justify-content-center">
+                <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
                 <div class="col-md-6 col-xl-4">
                     <div class="card mb-5">
                         <div class="card-body d-flex flex-column align-items-center">
