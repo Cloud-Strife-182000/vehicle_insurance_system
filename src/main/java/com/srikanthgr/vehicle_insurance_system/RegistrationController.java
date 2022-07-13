@@ -79,7 +79,7 @@ public class RegistrationController {
 
         if(userData != null){
 
-            logger.setErrorMessage("Error: Username already taken.");
+            logger.setErrorMessage("Error: Email already taken.");
 
             model.addAttribute("register", user);
             model.addAttribute("logger", logger);
