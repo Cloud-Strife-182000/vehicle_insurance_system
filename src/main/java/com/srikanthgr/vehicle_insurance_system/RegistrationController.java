@@ -60,6 +60,7 @@ public class RegistrationController {
 
         User userData = userRepo.findByUsername(enteredUsername);
 
+        /*
         if(StringUtils.isBlank(user.getFirstName()) || 
             StringUtils.isBlank(user.getLastName())  ||
             StringUtils.isBlank(user.getAddress()) ||
@@ -74,6 +75,7 @@ public class RegistrationController {
 
             return "register";
         }
+        */
 
         if(userData != null){
 
@@ -128,6 +130,7 @@ public class RegistrationController {
     @PostMapping("/userlogin")
     public String loginFormSubmit(@ModelAttribute User user, @ModelAttribute Logger logger, HttpSession session, Model model){
 
+        /*
         if(StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())){
 
             logger.setErrorMessage("Error: All compulsory fields have not been filled");
@@ -138,6 +141,7 @@ public class RegistrationController {
 
             return "userlogin";
         }
+        */
 
         String enteredUsername = user.getUsername();
 
@@ -304,6 +308,7 @@ public class RegistrationController {
 
         User currUser = (User) session.getAttribute("curr_user");
 
+        /*
         if(StringUtils.isBlank(vehicle.getVehicleNumber()) ||
             StringUtils.isBlank(vehicle.getVehicleType()) ||
             StringUtils.isBlank(vehicle.getVehicleModel()) ||
@@ -317,6 +322,7 @@ public class RegistrationController {
 
             return "account/register_vehicle";
         }
+        */
 
         vehicle.setUsername(currUser.getUsername());
         vehicle.setInsuranceStatus("Not Insured");
@@ -341,6 +347,7 @@ public class RegistrationController {
     @PostMapping("/account/register_policy")
     public String policyFormSubmit(@ModelAttribute Policy policy, @ModelAttribute Logger logger, HttpSession session, Model model){
 
+        /*
         if(StringUtils.isBlank(policy.getVehicleNumber()) ||
         StringUtils.isBlank(policy.getParkingLocation()) ||
         StringUtils.isBlank(policy.getInsurancePolicy()) ||
@@ -358,6 +365,7 @@ public class RegistrationController {
 
             return "account/register_policy";
         }
+        */
 
         User currUser = (User) session.getAttribute("curr_user");
 
@@ -421,6 +429,7 @@ public class RegistrationController {
 
         model.addAttribute("vehicle_details", v);
 
+        /*
         //check if vehicle number field is blank
         if(StringUtils.isBlank(v.getVehicleNumber())){
             
@@ -430,6 +439,7 @@ public class RegistrationController {
 
             return "account/removal";
         }
+        */
 
         User currUser = (User) session.getAttribute("curr_user");
 
@@ -495,6 +505,7 @@ public class RegistrationController {
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
         model.addAttribute("user_entered", user);
 
+        /*
         if(StringUtils.isBlank(user.getUsername())){
 
             userDetailsToggle = false;
@@ -507,6 +518,7 @@ public class RegistrationController {
 
             return "admin";
         }
+        */
 
         User userData = userRepo.findByUsername(user.getUsername());
 
@@ -525,6 +537,8 @@ public class RegistrationController {
         else{
             
             userDetailsToggle = true;
+
+            model.addAttribute("userDetailsToggle", userDetailsToggle);
 
             model.addAttribute("userData", userData);
         }
