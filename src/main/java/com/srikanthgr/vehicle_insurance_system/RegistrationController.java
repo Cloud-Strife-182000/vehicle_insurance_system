@@ -202,10 +202,14 @@ public class RegistrationController {
         if(currUser != null){
 
             model.addAttribute("account", currUser);
+            model.addAttribute("userExists", true);
+            
             return "account";
         }
+
+        model.addAttribute("userExists", false);
         
-        return "no_account";
+        return "account";
     }
 
     @PostMapping("/account")
@@ -214,7 +218,10 @@ public class RegistrationController {
         User currUser = (User) session.getAttribute("curr_user");
 
         if(currUser == null){
-            return "no_account";
+
+            model.addAttribute("userExists", false);
+
+            return "account";
         }
 
         currUser = null;
@@ -223,8 +230,9 @@ public class RegistrationController {
         session.setAttribute("isAdmin", false);
         model.addAttribute("account", null);
         model.addAttribute("isAdmin", false);
+        model.addAttribute("userExists", false);
 
-        return "no_account";
+        return "account";
     }
 
     @GetMapping("/account/insurance")

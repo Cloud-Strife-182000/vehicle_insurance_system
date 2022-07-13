@@ -33,16 +33,24 @@
 
             <h2>Account</h2>
 
-            <p th:text="'Welcome, ' + ${account.firstName} + ' ' + ${account.lastName}" />
-            <p th:text="'Address: ' + ${account.address}" />
-            <p th:text="'City: ' + ${account.city}" />
-            <p th:text="'Your username: ' + ${account.username}" />
+            <div th:if="${userExists}">
+                <p>You have not logged in.</p>
+            </div>
 
-            <a th:href="@{account/insurance}">Access your registered vehicles and insurance policies</a>
+            <div th:if="${userExists}">
 
-            <form action="#" th:action="@{/account}" method="post">
-                <p><input type="submit" value="Logout" /></p>
-            </form>
+                <p th:text="'Welcome, ' + ${account.firstName} + ' ' + ${account.lastName}" />
+                <p th:text="'Address: ' + ${account.address}" />
+                <p th:text="'City: ' + ${account.city}" />
+                <p th:text="'Your username: ' + ${account.username}" />
+
+                <a th:href="@{account/insurance}">Access your registered vehicles and insurance policies</a>
+
+                <form action="#" th:action="@{/account}" method="post">
+                    <p><input type="submit" value="Logout" /></p>
+                </form>
+
+            </div>
 
         </div>
     </div>
