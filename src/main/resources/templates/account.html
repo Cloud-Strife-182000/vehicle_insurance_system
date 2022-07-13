@@ -33,7 +33,7 @@
 
             <h2>Account</h2>
 
-            <div th:if="${userExists}">
+            <div th:if="${!userExists}">
                 <p>You have not logged in.</p>
             </div>
 
