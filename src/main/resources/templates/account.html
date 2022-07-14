@@ -76,15 +76,17 @@
                 </form>
                 <h4>Actions:</h4>
                 <div class="row">
-                    <a class="btn btn-primary" role="button" th:href="@{account/insurance}">Access your insurance policies</a>
+                    <div class="col" style="margin-bottom: 10px;"><a class="btn btn-primary" role="button">Access your insurance policies</a></div>
                 </div>
                 <div class="row" th:if="${isAdmin}">
-                    <a class="btn btn-primary" role="button" style="background: var(--bs-red);" th:href="@{admin}">Admin Center</a>
+                    <div class="col" style="margin-bottom: 10px;"><a class="btn btn-primary" role="button" style="background: var(--bs-red);">Admin Center</a></div>
                 </div>
                 <div class="row">
-                    <form action="#" th:action="@{/account}" method="post">
-                        <button class="btn btn-primary" type="submit" style="background: var(--bs-gray-200);color: rgb(0,0,0);">Log Out</button>
-                    </form>
+                    <div class="col">
+                        <form action="#" th:action="@{/account}" method="post">
+                            <button class="btn btn-primary" type="submit" style="background: var(--bs-gray-200);color: rgb(0,0,0);">Log Out</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
