@@ -1,64 +1,107 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
 
-<html xmlns:th="https://www.thymeleaf.org">
-
-<head> 
-    <title>Vehicle Insurance System</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/styles.css" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>vehicle_insurance_system</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-FormModal-Contact-Form-with-Google-Map.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Right-Links-Dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-
-    <div class="header">
-        <h1>Vehicle Insurance System</h1>
-        <h2> The pinnacle of vehicle insurance </h2>
-    </div>
-
-    <div class="navbar">
-        <a th:href="@{home}">Home</a>
-        <a th:href="@{register}">Register</a>
-        <a th:href="@{userlogin}">Login</a>
-        <a th:href="@{account}" class="active">Account</a>
-        <div th:if="${isAdmin}">
-            <a th:href="@{admin}">Admin</a>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="side">
-            <h2>The best in the vehicle insurance industry</h2>
-        </div>
-        <div class="main">
-
-            <h2>Account</h2>
-
-            <div th:if="${!userExists}">
-                <p>You have not logged in.</p>
+    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark shadow-lg py-3">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{home}"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-car">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <circle cx="7" cy="17" r="2"></circle>
+                        <circle cx="17" cy="17" r="2"></circle>
+                        <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+                    </svg></span><span>Srikanth's Vehicle Insurance</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-5">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{contact}">Contact Us</a></li>
+                    <li class="nav-item"></li>
+                </ul><a class="btn btn-primary ms-md-2" role="button" th:href="@{account}">Your Account</a>
             </div>
-
-            <div th:if="${userExists}">
-
-                <p th:text="'Welcome, ' + ${account.firstName} + ' ' + ${account.lastName}" />
-                <p th:text="'Address: ' + ${account.address}" />
-                <p th:text="'City: ' + ${account.city}" />
-                <p th:text="'Your username: ' + ${account.username}" />
-
-                <a th:href="@{account/insurance}">Access your registered vehicles and insurance policies</a>
-
-                <form action="#" th:action="@{/account}" method="post">
-                    <p><input type="submit" value="Logout" /></p>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4">Your Account</h3>
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 fw-bold">User Information</p>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row" style="margin-bottom: 25px;text-align: left;">
+                        <div class="col-sm-4 col-md-4 col-lg-3 col-xl-2 col-xxl-2" style="display: inline;text-align: center;margin-bottom: 25px;"><img class="rounded-circle mb-3 mt-4 img-fluid" src="assets/img/dogs/blank-profile-photo.jpeg" style="display: inline;max-height: 110px;"><br></div>
+                        <div class="col-sm-8 col-md-8 col-lg-9 col-xl-10 col-xxl-10 align-self-center">
+                            <div class="row">
+                                <div class="col-md-12 text-start">
+                                    <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label>
+                                        <p th:text="${account.username}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label>
+                                <p th:text="${account.firstName}" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label>
+                                <p th:text="${account.lastName}" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3"><label class="form-label" for="address"><strong>Address</strong></label>
+                                <p th:text="${account.address}" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3"><label class="form-label" for="city"><strong>City</strong></label>
+                                <p th:text="${account.city}" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <p id="emailErrorMsg" class="text-danger" style="display:none;"></p>
+                            <p id="passwordErrorMsg" class="text-danger" style="display:none;"></p>
+                        </div>
+                    </div>
                 </form>
-
+                <h4>Actions:</h4>
+                <div class="row">
+                    <a class="btn btn-primary" role="button" th:href="@{account/insurance}">Access your insurance policies</a>
+                </div>
+                <div class="row" th:if="${isAdmin}">
+                    <a class="btn btn-primary" role="button" style="background: var(--bs-red);" th:href="@{admin}">Admin Center</a>
+                </div>
+                <div class="row">
+                    <form action="#" th:action="@{/account}" method="post">
+                        <button class="btn btn-primary" type="submit" style="background: var(--bs-gray-200);color: rgb(0,0,0);">Log Out</button>
+                    </form>
+                </div>
             </div>
-
         </div>
     </div>
-
-    <div class="footer">
-        <h2>Vehicle Insurance आसान बना दिया (made easy)</h2>
-      </div>
-
+    <footer class="text-center bg-dark">
+        <div class="container text-white py-4 py-lg-5">
+            <ul class="list-inline">
+                <li class="list-inline-item me-4"><a class="link-light" th:href="@{account}">Your Account</a></li>
+                <li class="list-inline-item me-4"></li>
+                <li class="list-inline-item"><a class="link-light" th:href="@{contact}">Contact Us</a></li>
+            </ul>
+            <p class="text-muted mb-0">Copyright © 2022 Srikanth's Vehicle Insurance</p>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Contact-FormModal-Contact-Form-with-Google-Map.js"></script>
+    <script src="https://geodata.solutions/includes/countrystate.js"></script>
 </body>
 
 </html>

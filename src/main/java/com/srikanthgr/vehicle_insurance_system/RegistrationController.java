@@ -37,6 +37,16 @@ public class RegistrationController {
 
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser != null){
+
+            model.addAttribute("userExists", true);
+        }
+        else{
+            model.addAttribute("userExists", false);
+        }
+
         return "home";
     }
 
@@ -183,7 +193,7 @@ public class RegistrationController {
 
             model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-            return "login_success";
+            return "forward:account";
         }
         else{
 
