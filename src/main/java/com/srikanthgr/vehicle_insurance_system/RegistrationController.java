@@ -610,7 +610,17 @@ public class RegistrationController {
     }
 
     @GetMapping("/contact")
-    public String contactPage(Model model){
+    public String contactPage(Model model, HttpSession session){
+
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser != null){
+
+            model.addAttribute("userExists", true);
+        }
+        else{
+            model.addAttribute("userExists", false);
+        }
 
         return "contact";
     }
