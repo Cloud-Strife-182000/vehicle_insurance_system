@@ -53,6 +53,13 @@ public class RegistrationController {
     @GetMapping("/register")
     public String registrationForm(Model model, HttpSession session){
 
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser != null){
+            
+            return "redirect:account";
+        }
+
         model.addAttribute("register", new User());
         model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
@@ -129,6 +136,13 @@ public class RegistrationController {
 
     @GetMapping("/userlogin")
     public String loginForm(Model model, HttpSession session){
+
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser != null){
+            
+            return "redirect:account";
+        }
 
         model.addAttribute("userlogin", new User());
         model.addAttribute("logger", new Logger());
@@ -235,7 +249,7 @@ public class RegistrationController {
 
             model.addAttribute("userExists", false);
 
-            return "account";
+            return "redirect:home";
         }
 
         currUser = null;
@@ -246,7 +260,7 @@ public class RegistrationController {
         model.addAttribute("isAdmin", false);
         model.addAttribute("userExists", false);
 
-        return "account";
+        return "redirect:home";
     }
 
     @GetMapping("/account/insurance")
