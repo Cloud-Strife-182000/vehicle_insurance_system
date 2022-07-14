@@ -215,7 +215,7 @@ public class RegistrationController {
 
         if(currUser != null){
 
-            model.addAttribute("account", currUser);
+            model.addAttribute("curr_account", currUser);
             model.addAttribute("userExists", true);
             
             return "account";
@@ -242,7 +242,7 @@ public class RegistrationController {
 
         session.setAttribute("curr_user", null);
         session.setAttribute("isAdmin", false);
-        model.addAttribute("account", null);
+        model.addAttribute("curr_account", null);
         model.addAttribute("isAdmin", false);
         model.addAttribute("userExists", false);
 
