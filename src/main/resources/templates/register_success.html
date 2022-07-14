@@ -1,48 +1,63 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
 
-<html xmlns:th="https://www.thymeleaf.org">
-
-<head> 
-    <title>Vehicle Insurance System</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/styles.css" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>vehicle_insurance_system</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-FormModal-Contact-Form-with-Google-Map.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Right-Links-Dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-
-    <div class="header">
-        <h1>Vehicle Insurance System</h1>
-        <h2> The pinnacle of vehicle insurance </h2>
-    </div>
-
-    <div class="navbar">
-        <a th:href="@{home}">Home</a>
-        <a href="#" class="active">Register</a>
-        <a th:href="@{userlogin}">Login</a>
-        <a th:href="@{account}">Account</a>
-        <div th:if="${isAdmin}">
-            <a th:href="@{admin}">Admin</a>
+    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark shadow-lg py-3">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="home.html"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-car">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <circle cx="7" cy="17" r="2"></circle>
+                        <circle cx="17" cy="17" r="2"></circle>
+                        <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+                    </svg></span><span>Srikanth's Vehicle Insurance</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-5">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{contact}">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{userlogin}">Log In</a></li>
+                </ul><a class="btn btn-primary ms-md-2" role="button" th:href="@{register}">Sign Up</a>
+            </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="side">
-            <h2>The best in the vehicle insurance industry</h2>
+    </nav>
+    <section class="py-4 py-xl-5">
+        <div class="container">
+            <div class="text-center p-4 p-lg-5">
+                <p class="fw-bold text-primary mb-2">Welcome!</p>
+                <h1 class="fw-bold mb-4">Thank you for registering with us.</h1><a class="btn btn-light fs-5 shadow-lg py-2 px-4" role="button" th:href="@{userlogin}">Log in with your credentials</a>
+            </div>
         </div>
-        <div class="main">
-            <h2>Form Results:</h2>
-            <h5>Registration Successful!</h5>
-            <p th:text="'Welcome, ' + ${register.firstName} + ' ' + ${register.lastName}" />
-            <a th:href="@{userlogin}">Log In</a>
-            <p>Or </p> 
-            <a th:href="@{register}">Submit another user's details</a>
+        <section class="py-4 py-xl-5">
+            <div class="container">
+                <div class="text-white bg-dark border rounded border-0 p-4 p-md-5">
+                    <h2 class="fw-bold text-white mb-3">Start a new journey with us.</h2>
+                    <p class="mb-4">To understand more about our policies, contact us through the following link.</p>
+                    <div class="my-3"><a class="btn btn-primary btn-lg me-2" role="button" th:href="@{contact}">Contact Us</a></div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <footer class="text-center bg-dark">
+        <div class="container text-white py-4 py-lg-5">
+            <ul class="list-inline">
+                <li class="list-inline-item me-4"><a class="link-light" th:href="@{register}">Sign Up</a></li>
+                <li class="list-inline-item me-4"><a class="link-light" th:href="@{userlogin}">Log In</a></li>
+                <li class="list-inline-item"><a class="link-light" th:href="@{contact}">Contact Us</a></li>
+            </ul>
+            <p class="text-muted mb-0">Copyright © 2022 Srikanth's Vehicle Insurance</p>
         </div>
-    </div>
-
-    <div class="footer">
-        <h2>Vehicle Insurance आसान बना दिया (made easy)</h2>
-      </div>
-
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Contact-FormModal-Contact-Form-with-Google-Map.js"></script>
 </body>
 
 </html>
