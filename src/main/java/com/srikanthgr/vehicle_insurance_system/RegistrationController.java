@@ -317,6 +317,26 @@ public class RegistrationController {
         return "account/insurance";
     }
 
+    @PostMapping("/account/insurance")
+    public String logOutOfAccountFromInsurancePage(HttpSession session, Model model){
+
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser == null){
+
+            model.addAttribute("userExists", false);
+
+            return "redirect:home";
+        }
+
+        currUser = null;
+
+        session.setAttribute("curr_user", null);
+        session.setAttribute("isAdmin", false);
+
+        return "redirect:home";
+    }
+
     @GetMapping("/account/register_vehicle")
     public String vehicleForm(HttpSession session, Model model){
         
