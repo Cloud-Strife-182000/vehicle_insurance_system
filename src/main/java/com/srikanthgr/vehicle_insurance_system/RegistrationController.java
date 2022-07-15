@@ -307,6 +307,7 @@ public class RegistrationController {
 
         }
 
+        model.addAttribute("curr_account", currUser);
         model.addAttribute("vehicles", currVehicles);
         model.addAttribute("policies", currPolicies);
         model.addAttribute("logger", logger);
