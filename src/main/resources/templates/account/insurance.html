@@ -13,7 +13,7 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark shadow-lg py-3">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{home}"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-car">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{/home}"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-car">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <circle cx="7" cy="17" r="2"></circle>
                         <circle cx="17" cy="17" r="2"></circle>
@@ -22,9 +22,9 @@
             <div class="collapse navbar-collapse" id="navcol-5">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{contact}">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact Us</a></li>
                     <li class="nav-item"></li>
-                </ul><a class="btn btn-primary ms-md-2" role="button" th:href="@{account}">Your Account</a>
+                </ul><a class="btn btn-primary ms-md-2" role="button" th:href="@{/account}">Your Account</a>
             </div>
         </div>
     </nav>
@@ -136,9 +136,9 @@
     <footer class="text-center bg-dark">
         <div class="container text-white py-4 py-lg-5">
             <ul class="list-inline">
-                <li class="list-inline-item me-4"><a class="link-light" th:href="@{account}">Your Account</a></li>
+                <li class="list-inline-item me-4"><a class="link-light" th:href="@{/account}">Your Account</a></li>
                 <li class="list-inline-item me-4"></li>
-                <li class="list-inline-item"><a class="link-light" th:href="@{contact}">Contact Us</a></li>
+                <li class="list-inline-item"><a class="link-light" th:href="@{/contact}">Contact Us</a></li>
             </ul>
             <p class="text-muted mb-0">Copyright © 2022 Srikanth's Vehicle Insurance</p>
         </div>

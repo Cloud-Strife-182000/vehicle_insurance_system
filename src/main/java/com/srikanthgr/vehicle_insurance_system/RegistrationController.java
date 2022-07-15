@@ -327,7 +327,7 @@ public class RegistrationController {
 
             model.addAttribute("userExists", false);
 
-            return "redirect:home";
+            return "redirect:/home";
         }
 
         currUser = null;
@@ -335,7 +335,7 @@ public class RegistrationController {
         session.setAttribute("curr_user", null);
         session.setAttribute("isAdmin", false);
 
-        return "redirect:home";
+        return "redirect:/home";
     }
 
     @GetMapping("/account/register_vehicle")
