@@ -53,7 +53,8 @@
                         </div>
                     </div>
                 </form>
-                <p class="fs-5 fw-bold">Registered Vehicles:</p>
+                
+                <h4>Registered Vehicles:</h4>
 
                 <div th:if="${!vehiclesExists}">
                   <b><p th:text="${logger.errorMessage}" /></b>
@@ -83,7 +84,7 @@
                 </div>
 
 
-                <p class="fs-5 fw-bold">Insurance Policies:</p>
+                <h4>Insurance Policies:</h4>
                 
                 <div th:if="${!policiesExists}">
                   <b><p th:text="${logger.secondaryErrorMessage}" /></b>
