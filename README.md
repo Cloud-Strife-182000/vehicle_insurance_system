@@ -1,5 +1,5 @@
 # vehicle_insurance_system
-Vehicle Insurance System - Web Application made with Java Spring Boot, Maven, Hibernate and Oracle SQL. 
+Vehicle Insurance System - Web Application made with Java Spring Boot, Maven, Hibernate and SQL. 
 
 Functions implemented so far: <br>
 -Register as new user<br>
