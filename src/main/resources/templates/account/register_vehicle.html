@@ -1,77 +1,90 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
 
-<html xmlns:th="https://www.thymeleaf.org">
-
-<head> 
-    <title>Vehicle Insurance System</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/styles.css" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>vehicle_insurance_system</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/Contact-FormModal-Contact-Form-with-Google-Map.css">
+    <link rel="stylesheet" href="/assets/css/Navbar-Right-Links-Dark.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
-
-    <div class="header">
-        <h1>Vehicle Insurance System</h1>
-        <h2> The pinnacle of vehicle insurance </h2>
-    </div>
-
-    <div class="navbar">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/register}">Register</a>
-        <a th:href="@{/userlogin}">Login</a>
-        <a th:href="@{/account}" class="active">Account</a>
-        <div th:if="${isAdmin}">
-            <a th:href="@{/admin}">Admin</a>
+    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark shadow-lg py-3">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{/home}"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-car">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <circle cx="7" cy="17" r="2"></circle>
+                        <circle cx="17" cy="17" r="2"></circle>
+                        <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+                    </svg></span><span>Srikanth's Vehicle Insurance</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-5">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact Us</a></li>
+                    <li class="nav-item"></li>
+                </ul><a class="btn btn-primary ms-md-2" role="button" th:href="@{/account}">Your Account</a>
+            </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="side">
-            <h2>The best in the vehicle insurance industry</h2>
-        </div>
-        <div class="main">
-            <h2>Insurance Details</h2>
-            <p>Please fill out the following form to register your vehicle:</p>
-
-            <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
-
-            <form th:action="@{register_vehicle}" th:object="${vehicle_details}" method="post">
-                
-                <div class = "p_form">
-                    <label class="required">Vehicle Number: </label>
-                    <input type="text" th:field="*{vehicleNumber}" />
+    </nav>
+    <section class="position-relative py-4 py-xl-5">
+        <div class="container">
+            <form id="contactForm-2" action="javascript:void();" th:action="@{register_vehicle}" th:object="${vehicle_details}" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="successfail"></div>
+                    </div>
                 </div>
-                
-                <div class = "p_form">
-                    <label class="required">Vehicle Type: </label>
-                    <select th:field="*{vehicleType}">
-                        <option value="Two Wheeler">Two Wheeler</option>
-                        <option value="Four Wheeler">Four Wheeler</option>
-                    </select>
+                <div class="row">
+                    <div class="col-md-6" id="message">
+                        <fieldset>
+                            <legend><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-fill">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                                </svg> Register Vehicle</legend>
+                        </fieldset>
+                        <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
+                        <div class="has-feedback form-group mb-3"><label class="form-label" for="from_name">Vehicle Number</label><input class="form-control" type="text" id="from_name" tabindex="-1" name="from_name" required="" placeholder="Vehicle Number" th:field="*{vehicleNumber}"></div>
+                        <div class="has-feedback form-group mb-3"><label class="form-label" for="from_name">Vehicle Type</label><select class="form-select" th:field="*{vehicleType}">
+                                <optgroup label="Vehicle Type">
+                                    <option value="Two Wheeler" selected="">Two Wheeler</option>
+                                    <option value="Four Wheeler">Four Wheeler</option>
+                                </optgroup>
+                            </select></div>
+                        <div class="has-feedback form-group mb-3"><label class="form-label" for="from_vmodel">Vehicle Model</label><input class="form-control" type="text" name="from_vmodel" placeholder="Vehicle Model" th:field="*{vehicleModel}"></div>
+                        <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">Registered City</label><input class="form-control" type="text" name="reg_city" placeholder="Registered City" th:field="*{registeredCity}"></div>
+                        <div class="form-group mb-3"><button class="btn btn-primary d-block w-100" type="submit">Register Vehicle&nbsp;<i class="fa fa-chevron-circle-right"></i></button></div>
+                        <hr>
+                    </div>
+                    <div class="col">
+                        <section class="py-4 py-xl-5">
+                            <div class="container">
+                                <div class="text-white bg-dark border rounded border-0 p-4 p-md-5">
+                                    <h2 class="fw-bold text-white mb-3">The standard process, made easier.</h2>
+                                    <p class="mb-4">Trusted by over 10 crore+ Indians, our insurance policies are unmatched at giving the best value for your money.&nbsp;</p>
+                                    <div class="my-3"></div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-
-                <div class = "p_form">
-                    <label class="required">Vehicle Model: </label>
-                    <input type="text" th:field="*{vehicleModel}" />
-                </div>
-
-                <div class = "p_form">
-                    <label class="required">Registered City: </label>
-                    <input type="text" th:field="*{registeredCity}" />
-                </div>
-
-                <p>
-                    <input type="submit" value="Submit" /> 
-                </p>
-
             </form>
         </div>
-    </div>
-
-    <div class="footer">
-        <h2>Vehicle Insurance आसान बना दिया (made easy)</h2>
-      </div>
-
+    </section>
+    <footer class="text-center bg-dark">
+        <div class="container text-white py-4 py-lg-5">
+            <ul class="list-inline">
+                <li class="list-inline-item me-4"><a class="link-light" th:href="@{/account}">Your Account</a></li>
+                <li class="list-inline-item me-4"></li>
+                <li class="list-inline-item"><a class="link-light" th:href="@{/contact}">Contact Us</a></li>
+            </ul>
+            <p class="text-muted mb-0">Copyright © 2022 Srikanth's Vehicle Insurance</p>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Contact-FormModal-Contact-Form-with-Google-Map.js"></script>
+    <script src="https://geodata.solutions/includes/countrystate.js"></script>
 </body>
 
 </html>
