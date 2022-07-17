@@ -29,7 +29,7 @@ public class RegistrationController {
 
     @GetMapping("/")
     public String redirectToHomePage(){
-        return "forward:home";
+        return "redirect:/home";
     }
 
     @GetMapping("/home")
@@ -57,7 +57,7 @@ public class RegistrationController {
 
         if(currUser != null){
             
-            return "redirect:account";
+            return "redirect:/account";
         }
 
         model.addAttribute("register", new User());
@@ -141,7 +141,7 @@ public class RegistrationController {
 
         if(currUser != null){
             
-            return "redirect:account";
+            return "redirect:/account";
         }
 
         model.addAttribute("userlogin", new User());
@@ -207,7 +207,7 @@ public class RegistrationController {
 
             model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
 
-            return "redirect:account";
+            return "redirect:/account";
         }
         else{
 
@@ -249,7 +249,7 @@ public class RegistrationController {
 
             model.addAttribute("userExists", false);
 
-            return "redirect:home";
+            return "redirect:/home";
         }
 
         currUser = null;
@@ -260,7 +260,7 @@ public class RegistrationController {
         model.addAttribute("isAdmin", false);
         model.addAttribute("userExists", false);
 
-        return "redirect:home";
+        return "redirect:/home";
     }
 
     @GetMapping("/account/insurance")
@@ -270,7 +270,7 @@ public class RegistrationController {
 
         if(currUser == null){
 
-            return "redirect:home";
+            return "redirect:/home";
         }
 
         List<Vehicle> currVehicles = vehicleRepo.findByUsername(currUser.getUsername());
@@ -350,7 +350,7 @@ public class RegistrationController {
 
         if(currUser == null){
 
-            return "redirect:home";
+            return "redirect:/home";
         }
 
         model.addAttribute("vehicle_details", new Vehicle());
@@ -398,7 +398,7 @@ public class RegistrationController {
 
         if(currUser == null){
 
-            return "redirect:home";
+            return "redirect:/home";
         }
 
         model.addAttribute("policy_details", new Policy());
@@ -485,7 +485,7 @@ public class RegistrationController {
 
         if(currUser == null){
 
-            return "redirect:home";
+            return "redirect:/home";
         }
        
         model.addAttribute("vehicle_details", new Vehicle());
@@ -558,7 +558,7 @@ public class RegistrationController {
 
         if(currUser == null){
 
-            return "redirect:home";
+            return "redirect:/home";
         }
 
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
