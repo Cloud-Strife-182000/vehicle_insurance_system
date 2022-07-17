@@ -535,7 +535,7 @@ public class RegistrationController {
             
             model.addAttribute("logger", logger);
 
-            return "account/register_policy";
+            return "account/register_vehicle";
         }
 
         vehicleRepo.removeVehicle(currVehicle.getVehicleNumber());
