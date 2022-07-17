@@ -71,7 +71,7 @@
 
                 <div th:if="${userDetailsToggle}">
                     <p class="fs-5 fw-bold" style="margin-top: -6px;">User's Registered Vehicles:</p>
-                    <div th:if="${vehiclesExists}">
+                    <div th:if="${!vehiclesExists}">
                         <b><p th:text="${logger.secondaryErrorMessage}" /></b>
                     </div>
                 </div>
