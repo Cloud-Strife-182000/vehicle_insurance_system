@@ -47,46 +47,46 @@
                         <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="from_name">Vehicle Number</label><input class="form-control" type="text" id="from_name" tabindex="-1" name="from_name" required="" th:field="*{vehicleNumber}" placeholder="Vehicle Number"></div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="from_name">Where is the vehicle parked at night?</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" value="Locked enclosure" th:field="*{parkingLocation}"><label class="form-check-label" for="formCheck-1">Locked enclosure</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" value="Not in locked enclosure but within the boundary wall" th:field="*{parkingLocation}"><label class="form-check-label" for="formCheck-2">Not in locked enclosure but within the boundary wall</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3" value="Outside the boundary wall" th:field="*{parkingLocation}"><label class="form-check-label" for="formCheck-3">Outside the boundary wall</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" value="Locked enclosure" th:field="*{parkingLocation}" required=""><label class="form-check-label" for="formCheck-1">Locked enclosure</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" value="Not in locked enclosure but within the boundary wall" th:field="*{parkingLocation}" required=""><label class="form-check-label" for="formCheck-2">Not in locked enclosure but within the boundary wall</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3" value="Outside the boundary wall" th:field="*{parkingLocation}" required=""><label class="form-check-label" for="formCheck-3">Outside the boundary wall</label></div>
                         </div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="from_vmodel">Choose the type of policy:</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" value="Liability Policy" th:field="*{insurancePolicy}"><label class="form-check-label" for="formCheck-4">Liability Policy</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" value="Full OD + TP" th:field="*{insurancePolicy}"><label class="form-check-label" for="formCheck-5">Full OD + TP</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" value="Liability Policy" th:field="*{insurancePolicy}" required=""><label class="form-check-label" for="formCheck-4">Liability Policy</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" value="Full OD + TP" th:field="*{insurancePolicy}" required=""><label class="form-check-label" for="formCheck-5">Full OD + TP</label></div>
                             <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-6" value="Theft + TP" th:field="*{insurancePolicy}"><label class="form-check-label" for="formCheck-6">Theft + TP</label></div>
                             <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-7" value="Fire + TP" th:field="*{insurancePolicy}"><label class="form-check-label" for="formCheck-7">Fire + TP</label></div>
                             <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-8" value="Fire + Theft + TP" th:field="*{insurancePolicy}"><label class="form-check-label" for="formCheck-8">Fire + Theft + TP</label></div>
                         </div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">Are you entitled to No Claim Bonus?</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-9" value="Yes" th:field="*{noClaimBonus}"><label class="form-check-label" for="formCheck-9">Yes</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-10" value="No" th:field="*{noClaimBonus}"><label class="form-check-label" for="formCheck-10">No</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-9" value="Yes" th:field="*{noClaimBonus}" required=""><label class="form-check-label" for="formCheck-9">Yes</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-10" value="No" th:field="*{noClaimBonus}" required=""><label class="form-check-label" for="formCheck-10">No</label></div>
                         </div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">Is the vehicle fitted with an Anti-Theft Device?</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-11" value="Yes" th:field="*{antiTheftDevice}"><label class="form-check-label" for="formCheck-11">Yes</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-12" value="No" th:field="*{antiTheftDevice}"><label class="form-check-label" for="formCheck-12">No</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-11" value="Yes" th:field="*{antiTheftDevice}" required=""><label class="form-check-label" for="formCheck-11">Yes</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-12" value="No" th:field="*{antiTheftDevice}" required=""><label class="form-check-label" for="formCheck-12">No</label></div>
                         </div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">Do you wish to include Personal Accident (PA) cover for Named Person?</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-13" value="Yes" th:field="*{paCoverNamedPerson}"><label class="form-check-label" for="formCheck-13">Yes</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-14" value="No" th:field="*{paCoverNamedPerson}"><label class="form-check-label" for="formCheck-14">No</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-13" value="Yes" th:field="*{paCoverNamedPerson}" required=""><label class="form-check-label" for="formCheck-13">Yes</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-14" value="No" th:field="*{paCoverNamedPerson}" required=""><label class="form-check-label" for="formCheck-14">No</label></div>
                         </div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">Do you wish to include Personal Accident (PA) cover for unnamed persons/hirer/pillion passengers?</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-15" value="Yes" th:field="*{paCoverPassengers}"><label class="form-check-label" for="formCheck-15">Yes</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-16" value="No" th:field="*{paCoverPassengers}"><label class="form-check-label" for="formCheck-16">No</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-15" value="Yes" th:field="*{paCoverPassengers}" required=""><label class="form-check-label" for="formCheck-15">Yes</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-16" value="No" th:field="*{paCoverPassengers}" required=""><label class="form-check-label" for="formCheck-16">No</label></div>
                         </div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">Do you wish to give Legal Liability to:</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-17" value="Driver" th:field="*{legalLiability}"><label class="form-check-label" for="formCheck-17">Driver</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-18" value="Employees" th:field="*{legalLiability}"><label class="form-check-label" for="formCheck-18">Employees</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-19" value="Both" th:field="*{legalLiability}"><label class="form-check-label" for="formCheck-19">Both</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-17" value="Driver" th:field="*{legalLiability}" required=""><label class="form-check-label" for="formCheck-17">Driver</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-18" value="Employees" th:field="*{legalLiability}" required=""><label class="form-check-label" for="formCheck-18">Employees</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-19" value="Both" th:field="*{legalLiability}" required=""><label class="form-check-label" for="formCheck-19">Both</label></div>
                         </div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">Do you wish to opt for higher deductible over and above the compulsory deductible?</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-20" value="Yes" th:field="*{higherDeductible}"><label class="form-check-label" for="formCheck-20">Yes</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-21" value="No" th:field="*{higherDeductible}"><label class="form-check-label" for="formCheck-21">No</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-20" value="Yes" th:field="*{higherDeductible}" required=""><label class="form-check-label" for="formCheck-20">Yes</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-21" value="No" th:field="*{higherDeductible}" required=""><label class="form-check-label" for="formCheck-21">No</label></div>
                         </div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">If Yes, please specify the amount (in Rs.)</label><input class="form-control" type="number" name="deductible_value" placeholder="0.0" th:field="*{higherDeductibleValue}" th:value="*{higherDeductibleValue}"></div>
                         <div class="has-feedback form-group mb-3"><label class="form-label" for="reg_city">Are you a member of the Automobile Association of India?</label>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-22" value="Yes" th:field="*{automobileAssociationMember}"><label class="form-check-label" for="formCheck-22">Yes</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-23" value="No" th:field="*{automobileAssociationMember}"><label class="form-check-label" for="formCheck-23">No</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-22" value="Yes" th:field="*{automobileAssociationMember}" required=""><label class="form-check-label" for="formCheck-22">Yes</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-23" value="No" th:field="*{automobileAssociationMember}" required=""><label class="form-check-label" for="formCheck-23">No</label></div>
                         </div>
                         <div class="form-group mb-3"><button class="btn btn-primary d-block w-100" type="submit">Apply for insurance&nbsp;<i class="fa fa-chevron-circle-right"></i></button></div>
                         <hr>
