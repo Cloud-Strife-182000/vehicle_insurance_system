@@ -37,7 +37,11 @@
             <div class="card-body">
                 <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
                 <form th:action="@{admin}" th:object="${user_entered}" method="post"><label class="form-label">Enter username to get details of user:</label><input class="form-control" type="text" th:field="*{username}" required=""><button class="btn btn-primary" type="button" style="margin-top: 18px;margin-bottom: 22px;">Find User</button></form>
-                <p class="fs-5 fw-bold" style="margin-top: -6px;">User's Details:</p>
+                
+                <div th:if="${userDetailsToggle}">
+                    <p class="fs-5 fw-bold" style="margin-top: -6px;">User's Details:</p>
+                </div>
+                
                 <div class="row" style="margin-bottom: 25px;text-align: left;" th:if="${userDetailsToggle}">
                     <div class="col-md-6">
                         <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label>
@@ -64,14 +68,16 @@
                         <p id="passwordErrorMsg-1" class="text-danger" style="display:none;"></p>
                     </div>
                 </div>
-                <p class="fs-5 fw-bold" style="margin-top: -6px;">User's Registered Vehicles:</p>
 
-                <div th:if="${!vehiclesExists}">
-                    <b><p th:text="${logger.secondaryErrorMessage}" /></b>
+                <div th:if="${userDetailsToggle}">
+                    <p class="fs-5 fw-bold" style="margin-top: -6px;">User's Registered Vehicles:</p>
+                    <div th:if="${vehiclesExists}">
+                        <b><p th:text="${logger.secondaryErrorMessage}" /></b>
+                    </div>
                 </div>
 
-                <div class="table-responsive" th:if="${vehiclesExists}">
-                    <table class="table">
+                <div class="table-responsive">
+                    <table class="table" th:if="${vehiclesExists}">
                         <thead>
                             <tr>
                                 <th>Vehicle Number</th>
@@ -93,14 +99,15 @@
                     </table>
                 </div>
 
-                <p class="fs-5 fw-bold">User's Insurance Policies:</p>
-
-                <div th:if="${!policiesExists}">
-                    <b><p th:text="${logger.tertiaryErrorMessage}" /></b>
+                <div th:if="${userDetailsToggle}">
+                    <p class="fs-5 fw-bold">User's Insurance Policies:</p>
+                    <div th:if="${!policiesExists}">
+                        <b><p th:text="${logger.tertiaryErrorMessage}" /></b>
+                    </div>
                 </div>
 
-                <div class="table-responsive" th:if="${policiesExists}">
-                    <table class="table">
+                <div class="table-responsive" th:if="${userDetailsToggle}">
+                    <table class="table" th:if="${policiesExists}">
                         <thead>
                             <tr>
                                 <th>Vehicle Number</th>
