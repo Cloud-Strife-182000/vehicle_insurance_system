@@ -36,7 +36,7 @@
             </div>
             <div class="card-body">
                 <div class ="errorMessage"><b><p th:text="${logger.errorMessage}" /></b></div>
-                <form th:action="@{admin}" th:object="${user_entered}" method="post"><label class="form-label">Enter username to get details of user:</label><input class="form-control" type="text" th:field="*{username}" required=""><button class="btn btn-primary" type="button" style="margin-top: 18px;margin-bottom: 22px;">Find User</button></form>
+                <form th:action="@{admin}" th:object="${user_entered}" method="post"><label class="form-label">Enter username to get details of user:</label><input class="form-control" type="text" th:field="*{username}" required=""><button class="btn btn-primary" type="submit" style="margin-top: 18px;margin-bottom: 22px;">Find User</button></form>
                 
                 <div th:if="${userDetailsToggle}">
                     <p class="fs-5 fw-bold" style="margin-top: -6px;">User's Details:</p>
