@@ -268,6 +268,11 @@ public class RegistrationController {
         
         User currUser = (User) session.getAttribute("curr_user");
 
+        if(currUser == null){
+
+            return "redirect:home";
+        }
+
         List<Vehicle> currVehicles = vehicleRepo.findByUsername(currUser.getUsername());
         List<Policy> currPolicies = new ArrayList<Policy>();
 
@@ -341,6 +346,13 @@ public class RegistrationController {
     @GetMapping("/account/register_vehicle")
     public String vehicleForm(HttpSession session, Model model){
         
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser == null){
+
+            return "redirect:home";
+        }
+
         model.addAttribute("vehicle_details", new Vehicle());
         model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
@@ -382,6 +394,13 @@ public class RegistrationController {
     @GetMapping("/account/register_policy")
     public String policyForm(HttpSession session, Model model){
         
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser == null){
+
+            return "redirect:home";
+        }
+
         model.addAttribute("policy_details", new Policy());
         model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
@@ -462,6 +481,13 @@ public class RegistrationController {
     @GetMapping("/account/removal")
     public String removalForm(Model model, HttpSession session){
 
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser == null){
+
+            return "redirect:home";
+        }
+       
         model.addAttribute("vehicle_details", new Vehicle());
         model.addAttribute("logger", new Logger());
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
@@ -527,6 +553,13 @@ public class RegistrationController {
 
     @GetMapping("/admin")
     public String adminPage(Model model, HttpSession session){
+
+        User currUser = (User) session.getAttribute("curr_user");
+
+        if(currUser == null){
+
+            return "redirect:home";
+        }
 
         model.addAttribute("isAdmin", AuthenticationUtils.isAdmin(session));
         model.addAttribute("user_entered", new User());
